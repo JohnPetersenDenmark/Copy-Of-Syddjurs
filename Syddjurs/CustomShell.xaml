@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Shell xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Syddjurs.CustomShell"
+             xmlns:UtilPages="clr-namespace:Syddjurs.Pages"
+             Title="CustomShell">
+
+    <FlyoutItem Title="Grej"  Icon="settings.png" Route="items">
+
+        <ShellContent Title="Grej"  Icon="settings.png"                     
+          ContentTemplate="{DataTemplate UtilPages:ItemListPage}" >
+        </ShellContent>
+    </FlyoutItem>
+
+    <FlyoutItem Title="Kategorier"  Icon="settings.png" Route="categories">
+
+        <ShellContent Title="Kategorier"  Icon="settings.png"                     
+            ContentTemplate="{DataTemplate UtilPages:ItemCategory}" >
+        </ShellContent>
+    </FlyoutItem>
+
+    <FlyoutItem Title="Indstillinger"  Icon="settings.png" Route="settings">
+
+        <ShellContent Title="Indstillinger"  Icon="settings.png"                     
+             ContentTemplate="{DataTemplate UtilPages:SettingsPage}" >
+        </ShellContent>
+    </FlyoutItem>
+
+    <FlyoutItem Title="Test"  Icon="settings.png" Route="test">
+
+        <ShellContent Title="Test"  Icon="settings.png"                     
+            ContentTemplate="{DataTemplate UtilPages:TestPage}" >
+        </ShellContent>
+    </FlyoutItem>
+
+    <Shell.FlyoutHeader>
+        <Grid BackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" HeightRequest="150">
+            <Image Source="logofarvergb.jpg" 
+                WidthRequest="200"
+                HeightRequest="100"
+                Aspect="AspectFit">
+            </Image>
+        </Grid>
+    </Shell.FlyoutHeader>
+
+    <Shell.FlyoutFooter>
+        <VerticalStackLayout BackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" HeightRequest="100">
+            <Label
+         FontSize="30"
+         HorizontalOptions="Center"
+         Text="Rettigheder"
+         TextColor="white"
+         VerticalOptions="Center" />
+            <Label
+         FontSize="30"
+         HorizontalOptions="Center"
+         Text="Syddjurs Kommune"
+         TextColor="white"
+         VerticalOptions="Center" />
+        </VerticalStackLayout>
+    </Shell.FlyoutFooter>
+
+</Shell>

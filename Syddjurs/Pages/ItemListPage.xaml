@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Syddjurs.Pages.ItemListPage"
+             Title="Genstande">
+
+
+    <Grid RowDefinitions="Auto,*" Padding="10">
+        <!-- Header -->
+        <Label Text="Tøj til udlån" 
+               Grid.Row="0"
+               HorizontalOptions="Center" 
+               FontSize="24" 
+               Margin="20"/>
+
+        <!-- CollectionView -->
+        <CollectionView x:Name="ItemsCollectionView"
+                        Grid.Row="1"                        
+                        ItemsSource="{Binding Items}"
+                        SelectionMode="Single"
+                        BackgroundColor="{StaticResource onPrimaryContainer}"
+                        Margin="0,0,0,0"
+                         SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <!--<Frame BackgroundColor="Beige">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnItemTapped" />
+                        </Frame.GestureRecognizers>-->
+                        <Grid Padding="0">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup Name="CommonStates">
+                                <VisualState Name="Normal">
+                                    <VisualState.Setters>
+                                        <Setter Property="BackgroundColor" Value="Red" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState Name="Selected">
+                                    <VisualState.Setters>
+                                        <Setter Property="BackgroundColor" Value="Green" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Border Stroke="White" StrokeThickness="1" Margin="0, 0,0,20" >
+                            <StackLayout Margin="0, 0 , 0, 0"
+                                 Padding="10"
+                                 BackgroundColor="{Binding SelectedBackgroundColor}"
+                                 Orientation="Horizontal"
+                                 HorizontalOptions="Fill"
+                                 VerticalOptions="Center"
+                                        
+                                 Spacing="0">
+
+                                <!-- Details & Buttons -->
+                                <StackLayout Orientation="Vertical"
+                                              
+                                     VerticalOptions="Center"
+                                     Padding="10,0"
+                                     BackgroundColor="{AppThemeBinding Light='Transparent', Dark='Black'}"
+                                     Spacing="5">
+
+                                    <Label Text="{Binding Name}" FontAttributes="Italic" FontSize="16" TextColor="{Binding SelectedLabelTextColor}"/>
+                                    <Label Text="{Binding Lendable}"  TextColor="{Binding SelectedLabelTextColor}" />
+                                    <Label Text="{Binding Number}"  TextColor="{Binding SelectedLabelTextColor}" />
+
+
+                                    <StackLayout 
+                                        Orientation="Horizontal"                                        
+                                         HorizontalOptions="Center"
+                                         Margin="0,10,0,0"
+                                         IsVisible="{Binding IsSelected}"
+                                         Spacing="10">
+                                        <Button Text="Edit"
+                                                
+                                        Clicked="OnEditClicked"
+                                         BackgroundColor="{StaticResource onPrimaryContainer}"
+                                         TextColor="White"
+                                        Margin="5" />
+                                        <Button Text="Delete"
+                                        Clicked="OnDeleteClicked"
+                                        Margin="5"
+                                        BackgroundColor="{StaticResource onPrimaryContainer}"
+                                        TextColor="White"/>
+                                    </StackLayout>
+                                </StackLayout>
+                            </StackLayout>
+                        </Border>
+                    </Grid>
+                    <!--</Frame>-->
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>

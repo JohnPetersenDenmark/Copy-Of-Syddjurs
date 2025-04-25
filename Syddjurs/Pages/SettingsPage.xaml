@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:viewmodel="clr-namespace:Syddjurs.ViewModels"     
+             xmlns:controls="clr-namespace:Syddjurs.CustomControls"
+             x:Class="Syddjurs.Pages.SettingsPage"
+             Title="SettingsPage">
+
+    <ContentPage.BindingContext>
+        <viewmodel:SettingsViewModel />
+    </ContentPage.BindingContext>
+
+    <!--<Shell.BackButtonBehavior>
+        <BackButtonBehavior IsEnabled="False" IsVisible="False"/>
+    </Shell.BackButtonBehavior>-->
+    
+    
+
+    <VerticalStackLayout  Margin="20,20,20,20"  >
+        <HorizontalStackLayout >
+            <Label  
+            Text="Bruger"
+                FontSize="16"
+                FontAttributes="Bold"
+            VerticalOptions="Center" />
+        </HorizontalStackLayout>
+
+        <VerticalStackLayout x:Name="entriesContainer" Margin="20,20,20,20"  >
+
+            <Border Stroke="Black" StrokeThickness="1" Margin="0, 0,0,10">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="5,5,5,5" />
+                </Border.StrokeShape>
+
+                <controls:CustomEntry x:Name="UserName" Text="{Binding UserName}" 
+                    Placeholder="Brugernavn" 
+                    BackgroundColor="{StaticResource White}" TextColor="Black" UnderlineColor="Transparent" 
+             >
+                </controls:CustomEntry>
+            </Border>
+
+            <Border Stroke="Black" StrokeThickness="1" Margin="0, 0,0,10">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="5,5,5,5" />
+                </Border.StrokeShape>
+                <controls:CustomEntry x:Name="Password" Text="{Binding Password}" 
+                    Placeholder="Kodeord" 
+                    BackgroundColor="{StaticResource White}" TextColor="Black" UnderlineColor="Transparent" >
+                    
+                </controls:CustomEntry>
+            </Border>
+
+           
+
+
+
+        </VerticalStackLayout>
+    </VerticalStackLayout>
+</ContentPage>
