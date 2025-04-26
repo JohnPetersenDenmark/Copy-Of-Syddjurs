@@ -63,7 +63,7 @@ public partial class ItemListPage : ContentPage, INotifyPropertyChanged
     //        {
     //            stamp.IsSelected = true;
     //        //    //stamp.SelectedColor = Color.FromArgb(AddressListViewSelectedItemColorHex);
-    //        //    stamp.SelectedBackgroundColor = _selectedCollectionViewItemBackgroundColor;
+    //            stamp.SelectedBackgroundColor = _selectedCollectionViewItemBackgroundColor;
     //        //    stamp.SelectedLabelTextColor = _selectedLabelTextColor;
     //        }
     //        else

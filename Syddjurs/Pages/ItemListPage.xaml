@@ -6,20 +6,16 @@
 
 
     <Grid RowDefinitions="Auto,*" Padding="10">
-        <!-- Header -->
-        <Label Text="Tøj til udlån" 
-               Grid.Row="0"
-               HorizontalOptions="Center" 
-               FontSize="24" 
-               Margin="20"/>
+     
 
         <!-- CollectionView -->
         <CollectionView x:Name="ItemsCollectionView"
                         Grid.Row="1"                        
                         ItemsSource="{Binding Items}"
                         SelectionMode="Single"
+                        
                         BackgroundColor="{StaticResource onPrimaryContainer}"
-                        Margin="0,0,0,0"
+                        Margin="10,0,10,10"
                          SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
 
             <CollectionView.ItemTemplate>
@@ -28,25 +24,25 @@
                         <Frame.GestureRecognizers>
                             <TapGestureRecognizer Tapped="OnItemTapped" />
                         </Frame.GestureRecognizers>-->
-                        <Grid Padding="0">
+                    <Grid Padding="0" Margin="0,10,0,10">
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup Name="CommonStates">
                                 <VisualState Name="Normal">
                                     <VisualState.Setters>
-                                        <Setter Property="BackgroundColor" Value="Red" />
+                                        <Setter Property="BackgroundColor" Value="#f8e9f1" />
                                     </VisualState.Setters>
                                 </VisualState>
                                 <VisualState Name="Selected">
                                     <VisualState.Setters>
-                                        <Setter Property="BackgroundColor" Value="Green" />
+                                        <Setter Property="BackgroundColor" Value="#FAF0E6" />
                                     </VisualState.Setters>
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <Border Stroke="White" StrokeThickness="1" Margin="0, 0,0,20" >
+                        <Border Stroke="{StaticResource Primary}"  StrokeThickness="1" Margin="0, 0,0,0" >
                             <StackLayout Margin="0, 0 , 0, 0"
                                  Padding="10"
-                                 BackgroundColor="{Binding SelectedBackgroundColor}"
+                               
                                  Orientation="Horizontal"
                                  HorizontalOptions="Fill"
                                  VerticalOptions="Center"
@@ -61,29 +57,37 @@
                                      BackgroundColor="{AppThemeBinding Light='Transparent', Dark='Black'}"
                                      Spacing="5">
 
-                                    <Label Text="{Binding Name}" FontAttributes="Italic" FontSize="16" TextColor="{Binding SelectedLabelTextColor}"/>
-                                    <Label Text="{Binding Lendable}"  TextColor="{Binding SelectedLabelTextColor}" />
-                                    <Label Text="{Binding Number}"  TextColor="{Binding SelectedLabelTextColor}" />
+                                    <Label Text="{Binding Name}" FontAttributes="Italic" FontSize="16" TextColor="Black"/>
+                                    <Label Text="{Binding Lendable}"  TextColor="Black" />
+                                    <Label Text="{Binding Number}"  TextColor="Black" />
 
 
-                                    <StackLayout 
-                                        Orientation="Horizontal"                                        
-                                         HorizontalOptions="Center"
-                                         Margin="0,10,0,0"
-                                         IsVisible="{Binding IsSelected}"
-                                         Spacing="10">
-                                        <Button Text="Edit"
-                                                
-                                        Clicked="OnEditClicked"
-                                         BackgroundColor="{StaticResource onPrimaryContainer}"
-                                         TextColor="White"
-                                        Margin="5" />
-                                        <Button Text="Delete"
-                                        Clicked="OnDeleteClicked"
-                                        Margin="5"
-                                        BackgroundColor="{StaticResource onPrimaryContainer}"
-                                        TextColor="White"/>
-                                    </StackLayout>
+                                    <HorizontalStackLayout  
+                                    HorizontalOptions="Center"
+                                    IsVisible="{Binding IsSelected}"
+                                    Spacing="0">
+
+                                        <Button Text="Rediger" 
+			                                    HeightRequest="20"
+			                                    MinimumHeightRequest="20"
+												 CornerRadius="5" 
+			                                    Padding="10, 0,10,0"
+			                                    Clicked="OnEditClicked"
+			                                    BackgroundColor="{StaticResource Primary}"
+			                                    TextColor="White"
+			                                    Margin="10" />
+
+                                        <Button Text="Slet"
+			                                    HeightRequest="20"
+			                                    MinimumHeightRequest="20"
+                                                 CornerRadius="5" 
+			                                    Padding="0"
+			                                    Clicked="OnDeleteClicked"
+			                                    BackgroundColor="{StaticResource Primary}"
+			                                TextColor="White"
+			                                Margin="0" />
+
+                                    </HorizontalStackLayout>
                                 </StackLayout>
                             </StackLayout>
                         </Border>

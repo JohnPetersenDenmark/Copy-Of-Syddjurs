@@ -124,12 +124,20 @@ public partial class ItemPage : ContentPage, IQueryAttributable, INotifyProperty
 
     private void OnPageLoaded(object? sender, EventArgs e)
     {
-        IsDropdownVisible = false;
+       
 
          GetCategoriesAsync();
 
          FetchItemById(_selectedItemId);
        
+    }
+
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+        IsDropdownVisible = false;
+        IsSexDropdownVisible = false;
+
     }
 
     private async void SaveClicked(object sender, EventArgs e)
@@ -190,7 +198,7 @@ public partial class ItemPage : ContentPage, IQueryAttributable, INotifyProperty
                 CategoryList.Add(category);
             }
 
-            IsDropdownVisible = true;
+
         }
         catch (Exception ex)
         {
