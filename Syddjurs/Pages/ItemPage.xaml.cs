@@ -229,22 +229,7 @@ public partial class ItemPage : ContentPage, IQueryAttributable, INotifyProperty
         }
     }
 
-    private void CopyEntriesToDto()
-    {
-        var itemDto = new ItemDto();
-
-
-        //itemDto.Id = _selectedItemId;
-        //itemDto.Name = ItemName.Text;
-        //itemDto.Description = ItemDescription.Text;
-        //itemDto.Categori = SelectedCategory;
-        //itemDto.Sex = SelectedSex;
-        //itemDto.Number = int.Parse(NumberOfItemsEntry.Text);
-        //itemDto.Color = ColorEntry.Text;
-        //itemDto.Size = SizeEntry.Text;
-        //itemDto.Lendable = IsLendable;
-    }
-
+   
     private void CopyDtoToEntryFields(ItemDto itemDto)
     {
 

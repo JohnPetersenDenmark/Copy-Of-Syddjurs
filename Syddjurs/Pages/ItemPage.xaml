@@ -80,18 +80,17 @@
                         </Entry.GestureRecognizers>
                     </controls:CustomEntry>
 
-                    <!-- Arrow Icon -->
-                    <!--<Image Source="arrowdown.jpg"
-                  WidthRequest="40"
-                  HeightRequest="40"
-                  Grid.Column="1"                           
-                  VerticalOptions="Center"
-                  
-                  HorizontalOptions="End" >
-                 <Image.GestureRecognizers>
-                     <TapGestureRecognizer Tapped="OnCategoryEntryTapped" />
-                 </Image.GestureRecognizers>
-             </Image>-->
+                    
+                    <Image Source="arrowdowna.jpg"
+                            WidthRequest="40"
+                            HeightRequest="20"
+                            Grid.Column="1"                           
+                            VerticalOptions="Center"                           
+                            HorizontalOptions="End" >
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnCategoryEntryTapped" />
+                            </Image.GestureRecognizers>
+                    </Image>
                 </Grid>
             </Border>
             <Label Text="Kategori"
@@ -164,18 +163,17 @@
                         </Entry.GestureRecognizers>
                     </controls:CustomEntry>
 
-                    <!-- Arrow Icon -->
-                    <!--<Image Source="arrowdown.jpg"
-           WidthRequest="40"
-           HeightRequest="40"
-           Grid.Column="1"                           
-           VerticalOptions="Center"
-           
-           HorizontalOptions="End" >
-          <Image.GestureRecognizers>
-              <TapGestureRecognizer Tapped="OnCategoryEntryTapped" />
-          </Image.GestureRecognizers>
-      </Image>-->
+
+                    <Image Source="arrowdowna.png"
+                            WidthRequest="40"
+                            HeightRequest="20"
+                            Grid.Column="1"                           
+                            VerticalOptions="Center"           
+                            HorizontalOptions="End" >
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnSexyEntryTapped" />
+                            </Image.GestureRecognizers>
+                    </Image>
                 </Grid>
             </Border>
             <Label Text="Køn"
