@@ -1,5 +1,6 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Syddjurs.Models;
@@ -131,6 +132,39 @@ public partial class ItemPage : ContentPage, IQueryAttributable, INotifyProperty
        
     }
 
+    private async void SaveClicked(object sender, EventArgs e)
+    {
+        var itemDto = new ItemDto();
+
+        CopyEntryFieldsToDto(itemDto);
+
+        var json = JsonSerializer.Serialize(itemDto);
+
+        var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+        try
+        {
+            var httpClient = new HttpClient();
+            var response = await httpClient.PostAsync("http://192.168.8.105:5000/Home/uploaditem", content);
+            if (response.IsSuccessStatusCode)
+            {
+                await Application.Current.MainPage.DisplayAlert("Success", "Kategorien er gemt", "OK");
+            }
+            else
+            {
+                await Application.Current.MainPage.DisplayAlert("Error", "Kategorien blev ikke gemt", "OK");
+            }
+        }
+
+        catch (Exception ex)
+        {
+
+        }
+
+        await GetCategoriesAsync();
+    }
+    
+
     private void OnCategoryEntryTapped(object sender, EventArgs e)
     {
         IsDropdownVisible = !IsDropdownVisible;
@@ -227,7 +261,27 @@ public partial class ItemPage : ContentPage, IQueryAttributable, INotifyProperty
         IsLendable = itemDto.Lendable;
     }
 
-  //  public event PropertyChangedEventHandler PropertyChanged;
+    private void CopyEntryFieldsToDto(ItemDto itemDto)
+    {
+        itemDto.Id = _selectedItemId;
+        itemDto.Name = ItemName.Text ;
+       itemDto.Description = ItemDescription.Text;
+
+        if (SelectedCategory != null)
+        {
+            itemDto.CategoryId = (int) SelectedCategory.Id;
+            itemDto.CategoryText = SelectedCategory.Category;
+        }
+
+        itemDto.Sex = SelectedSex;
+        itemDto.Number = int.Parse(NumberOfItemsEntry.Text);
+
+        itemDto.Color = ColorEntry.Text;
+        itemDto.Size = SizeEntry.Text ;
+        itemDto.Lendable = IsLendable ;
+    }
+
+    //  public event PropertyChangedEventHandler PropertyChanged;
 
     protected virtual void OnPropertyChanged(string propertyName)
     {

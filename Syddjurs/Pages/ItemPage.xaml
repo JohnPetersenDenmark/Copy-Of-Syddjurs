@@ -18,7 +18,7 @@
                             HeightRequest="50"
                             BackgroundColor="{StaticResource White}"
                             TextColor="Black"
-                            HorizontalOptions="Start"
+                            
                             UnderlineColor="Transparent" />
                     </Border>
                     
@@ -317,5 +317,6 @@
                 </Grid>
             </VerticalStackLayout>
         </Grid>
+        <Button Text="Gem" Clicked="SaveClicked" Padding="0,0,0,0" Margin="10,0,0,10" />
     </VerticalStackLayout>
 </ContentPage>

@@ -7,8 +7,12 @@
 
     <FlyoutItem Title="Grej"  Icon="settings.png" Route="items">
 
-        <ShellContent Title="Grej"  Icon="settings.png"                     
+        <ShellContent Title="Liste"  Icon="settings.png"                     
           ContentTemplate="{DataTemplate UtilPages:ItemListPage}" >
+        </ShellContent>
+
+        <ShellContent Title="Tilføj"  Icon="settings.png"                     
+            ContentTemplate="{DataTemplate UtilPages:ItemPage}" >
         </ShellContent>
     </FlyoutItem>
 
