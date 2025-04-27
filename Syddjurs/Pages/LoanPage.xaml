@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:Syddjurs.CustomControls"
+             xmlns:local="clr-namespace:Syddjurs.Utilities"
+             x:Class="Syddjurs.Pages.LoanPage"
+             Title="Udlån">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:InverseBoolConverter x:Key="InverseBoolConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <VerticalStackLayout>
+        <Grid>
+                <CollectionView x:Name="ItemsCollectionView"
+                    Grid.Row="1"                        
+                    ItemsSource="{Binding Items}"
+                    SelectionMode="Single"                    
+                    BackgroundColor="{StaticResource onPrimaryContainer}"
+                    Margin="10,0,10,10"
+                    HeightRequest="180"
+                     SelectedItem="{Binding SelectedItem}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Padding="0" Margin="0,10,0,10">
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup Name="CommonStates">
+                                        <VisualState Name="Normal">
+                                            <VisualState.Setters>
+                                                <Setter Property="BackgroundColor" Value="#f8e9f1" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                        <VisualState Name="Selected">
+                                            <VisualState.Setters>
+                                                <Setter Property="BackgroundColor" Value="#FAF0E6" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
+                                <Border Stroke="{StaticResource Primary}"  StrokeThickness="1" Margin="0, 0,0,0" >
+                                   
+                                        <!-- Details & Buttons -->
+                                <StackLayout Orientation="Vertical"
+                                          
+                                                VerticalOptions="Center"
+                                                Padding="10,0"
+                                                 BackgroundColor="{AppThemeBinding Light='Transparent', Dark='Black'}"
+                                                Spacing="5">
+
+                                    <Label Text="{Binding Name}" FontAttributes="Italic" FontSize="16" TextColor="Black"/>
+                                    <Label Text="{Binding Lendable}"  TextColor="Black" />
+                                    <Label Text="{Binding Number}"  TextColor="Black" />
+
+
+                                    <!--<HorizontalStackLayout  
+                                            HorizontalOptions="Center"
+                                            IsVisible="{Binding IsSelected}"
+                                            Spacing="0">
+
+                                                <Button Text="Rediger" 
+		                                    HeightRequest="20"
+		                                    MinimumHeightRequest="20"
+											 CornerRadius="5" 
+		                                    Padding="10, 0,10,0"
+		                                    Clicked="OnEditClicked"
+		                                    BackgroundColor="{StaticResource Primary}"
+		                                    TextColor="White"
+		                                    Margin="10" />
+
+                                                <Button Text="Slet"
+		                                    HeightRequest="20"
+		                                    MinimumHeightRequest="20"
+                                             CornerRadius="5" 
+		                                    Padding="0"
+		                                    Clicked="OnDeleteClicked"
+		                                    BackgroundColor="{StaticResource Primary}"
+		                                TextColor="White"
+		                                Margin="0" />
+
+                                            </HorizontalStackLayout>-->
+                                </StackLayout>
+                            </Border>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Grid>
+
+            <Grid>
+            <CollectionView x:Name="LoanItemsCollectionView"
+                    Grid.Row="1"                        
+                    ItemsSource="{Binding LoanItemList}"
+                    SelectionMode="Single"                    
+                    BackgroundColor="{StaticResource onPrimaryContainer}"
+                    Margin="10,0,10,10"
+                    HeightRequest="400"       
+                    SelectedItem="{Binding SelectedLoanItem}">
+                 <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Padding="0" Margin="0,10,0,10">
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup Name="CommonStates">
+                                        <VisualState Name="Normal">
+                                            <VisualState.Setters>
+                                                <Setter Property="BackgroundColor" Value="Yellow" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                        <VisualState Name="Selected">
+                                            <VisualState.Setters>
+                                                <Setter Property="BackgroundColor" Value="#FAF0E6" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
+                            <Border    Stroke="{StaticResource Primary}"  StrokeThickness="1" Margin="0, 0,0,0" >
+
+
+                                <VerticalStackLayout                                
+                                        VerticalOptions="Start"
+                                        Padding="10,0,0,0"
+                                        HorizontalOptions="Start" 
+                                        BackgroundColor="{AppThemeBinding Light='Transparent', Dark='Black'}"
+                                        Spacing="5">
+
+                                    <Label Text="{Binding ItemName}" FontAttributes="Italic" FontSize="16" TextColor="Black"/>
+
+                                    <Label Text="Antal"  TextColor="Black" />
+                                    <Label Text="{Binding Number}"  TextColor="Black" IsVisible="{Binding IsSelected, Converter={StaticResource InverseBoolConverter}}"/>
+
+                                    <Border Stroke="{StaticResource Primary}" IsVisible="{Binding IsSelected}" StrokeThickness="1" Margin="0,0,0,5"  HorizontalOptions="Start"  WidthRequest="50"  HeightRequest="40" >
+                                        <controls:CustomEntry 
+                                            x:Name="NumberOfItemsEntry"   
+                                            IsVisible="{Binding IsSelected}"
+                                            Text="{Binding Number}"                                   
+                                            Keyboard="Numeric"                                            
+                                            BackgroundColor="Transparent"                                  
+                                            TextColor="Black"
+                                             WidthRequest="100"
+                                             HeightRequest="30"                                            
+                                             HorizontalOptions="Start" 
+                                            UnderlineColor="Transparent" />
+                                    </Border>
+
+                                    <Label Text="Note"  TextColor="Black" />
+                                    <Label BackgroundColor="Transparent" Text="{Binding Note}"  TextColor="Black" IsVisible="{Binding IsSelected, Converter={StaticResource InverseBoolConverter}}"/>
+                                    <Border Stroke="{StaticResource Primary}" IsVisible="{Binding IsSelected}" StrokeThickness="1" Margin="0,0,0,0" WidthRequest="300">
+                                        <Editor x:Name="LoanItemNote" 
+                                            IsVisible="{Binding IsSelected}"
+                                            AutoSize="TextChanges"
+                                            HeightRequest="100"
+                                                IsSpellCheckEnabled="False"
+                                            MaxLength="500"
+                                            FontSize="16"
+                                            BackgroundColor="Transparent"
+                                            TextColor="Black"
+                                            Text="{Binding Note}" />
+                                    </Border>
+
+
+                                    <Button Text="Fjern" 
+                                             IsVisible="{Binding IsSelected}"
+                                             HeightRequest="20"
+                                            MinimumHeightRequest="20"
+					                        CornerRadius="5" 
+                                            Padding="10, 0,10,0"
+                                            Clicked="OnRemoveLoanItemClicked"
+                                            BackgroundColor="{StaticResource Primary}"
+                                            TextColor="White"
+                                            Margin="10" />
+
+                                </VerticalStackLayout>
+                            </Border>
+                            </Grid>
+                        </DataTemplate>
+                 </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Grid>
+
+    </VerticalStackLayout>
+</ContentPage>

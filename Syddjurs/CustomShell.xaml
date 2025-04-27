@@ -16,6 +16,13 @@
         </ShellContent>
     </FlyoutItem>
 
+    <FlyoutItem Title="Udlån"  Icon="settings.png" Route="loans">
+
+        <ShellContent Title="Udlån"  Icon="settings.png"                     
+         ContentTemplate="{DataTemplate UtilPages:LoanPage}" >
+        </ShellContent>
+    </FlyoutItem>
+    
     <FlyoutItem Title="Kategorier"  Icon="settings.png" Route="categories">
 
         <ShellContent Title="Kategorier"  Icon="settings.png"                     

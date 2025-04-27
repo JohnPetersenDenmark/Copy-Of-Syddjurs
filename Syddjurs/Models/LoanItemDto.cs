@@ -3,36 +3,42 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
-using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Syddjurs.Models
 {
-    public class ItemInListDto : INotifyPropertyChanged
+    public class LoanItemDto : INotifyPropertyChanged
     {
-        [JsonPropertyName("id")]
         public int Id { get; set; }
-
+        public int ItemId { get; set; }
+        public string ItemName { get; set; }       
+        public string Lender { get; set; }        
      
-        [JsonPropertyName("lendable")]
-        public bool Lendable { get; set; }
 
-        [JsonPropertyName("number")]
-        public int? Number { get; set; }
 
-        string _name;
-        [JsonPropertyName("name")]
-        public string Name
+        string _note;
+        public string Note
         {
-            get => _name;
+            get => _note;
             set
             {
-                _name = value;
-                OnPropertyChanged(nameof(Name));
+                _note = value;
+                OnPropertyChanged(nameof(Note));
             }
         }
 
-        bool _isSelected;    
+        int _number;
+        public int Number
+        {
+            get => _number;
+            set
+            {
+                _number = value;
+                OnPropertyChanged(nameof(Number));
+            }
+        }
+
+        bool _isSelected;
         public bool IsSelected
         {
             get => _isSelected;
@@ -42,7 +48,6 @@ namespace Syddjurs.Models
                 OnPropertyChanged(nameof(IsSelected));
             }
         }
-
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
