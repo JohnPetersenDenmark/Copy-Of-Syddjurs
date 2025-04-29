@@ -16,7 +16,7 @@ namespace Syddjurs.Models
         }
 
         [JsonPropertyName("id")]
-        public int Id { get; set; }
+        public int? Id { get; set; }
        
         [JsonPropertyName("lender")]
         public string Lender { get; set; }

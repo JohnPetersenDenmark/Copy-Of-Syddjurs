@@ -1,3 +1,4 @@
+
 using Microsoft.VisualBasic;
 using Syddjurs.Models;
 using System.Collections.ObjectModel;
@@ -9,7 +10,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Syddjurs.Pages;
 
-public partial class LoanPage : ContentPage
+public partial class LoanPage : ContentPage, IQueryAttributable
 {
     private readonly HttpClient _httpClient;
     public ObservableCollection<ItemInListDto> Items { get; set; }
@@ -18,6 +19,9 @@ public partial class LoanPage : ContentPage
     private List<ItemInListDto> ItemRemovedList;
 
     private ItemInListDto _selectedItem;
+
+    private int _selectedLoanId;
+    private LoanForLIstDto _selectedLoan;
 
     public ItemInListDto SelectedItem
     {
@@ -63,8 +67,9 @@ public partial class LoanPage : ContentPage
     }
 
     private void ItemListPage_Loaded(object? sender, EventArgs e)
-    {
+    {       
         GetItemsForList();
+        GetLoanItemsLines(_selectedLoanId);
     }
 
     private async void GetItemsForList()
@@ -171,8 +176,17 @@ public partial class LoanPage : ContentPage
 
         loan.Lender = Preferences.Get("UserName", "");
         var now = DateTime.Now;
+        if (_selectedLoan != null)
+        {
+            loan.Id = _selectedLoan.Id;
+        }
+        else
+        {
+            loan.Id = 0;
+        }
 
-        loan.LoanDate = now.ToString("d", new CultureInfo("da-DK"));
+
+            loan.LoanDate = now.ToString("d", new CultureInfo("da-DK"));
 
 
         foreach (var loanItem in LoanItemList)
@@ -196,11 +210,11 @@ public partial class LoanPage : ContentPage
             var response = await httpClient.PostAsync("http://10.110.240.4:5000/Home/uploadloan", content);
             if (response.IsSuccessStatusCode)
             {
-                await Application.Current.MainPage.DisplayAlert("Success", "Kategorien er gemt", "OK");
+                await Application.Current.MainPage.DisplayAlert("Success", "Lånet er gemt", "OK");
             }
             else
             {
-                await Application.Current.MainPage.DisplayAlert("Error", "Kategorien blev ikke gemt", "OK");
+                await Application.Current.MainPage.DisplayAlert("Error", "Lånet blev ikke gemt", "OK");
             }
         }
 
@@ -211,5 +225,76 @@ public partial class LoanPage : ContentPage
 
     }
 
+    private async void GetLoanItemsLines(int loanId)
+    {
+        try
+        {
+            var response = await _httpClient.GetStringAsync("http://10.110.240.4:5000/Home/loanitemlines?loanId=" + loanId);
+
+            var loanItemLines = JsonSerializer.Deserialize<List<LoanItemLinesUploadDto>>(response);
+
+
+            //  LoanItemDto
+
+            LoanItemDto loanItemLineDto;
+            LoanItemList.Clear();
+            foreach (var loanItemLine in loanItemLines)
+            {
+                loanItemLineDto = new LoanItemDto();
+
+                loanItemLineDto.Note = loanItemLine.Note;
+                loanItemLineDto.Number = loanItemLine.Number;
+                loanItemLineDto.ItemName = loanItemLine.ItemName;
+                loanItemLineDto.Id = loanItemLine.LoanId;
+                loanItemLineDto.ItemId = loanItemLine.ItemId;
+
+                var item = Items.Where(p => p.Id == loanItemLine.ItemId).FirstOrDefault();
+
+                if (item != null)
+                {
+                    loanItemLineDto.AvailabeNumber = (int)item.Number;
+                    ItemRemovedList.Add(item);
+
+                    Items.Remove(item);
+                }
+
+                LoanItemList.Add(loanItemLineDto);
+                             
+            }
+
+            //IsDropdownVisible = true;
+        }
+        catch (Exception ex)
+        {
+            // Handle any errors (e.g., API failure, deserialization issues)
+            Console.WriteLine($"Error loading images: {ex.Message}");
+        }
+    }
+
+    public void ApplyQueryAttributes(IDictionary<string, object> query)
+    {
+        if (query.Count > 0)
+        {
+            var loan = query["LoanToEdit"] as LoanForLIstDto;
+            if (loan != null)
+            {
+
+                this._selectedLoanId = loan.Id;
+                this._selectedLoan = loan;
+
+             
+            }
+            else
+            {
+                this._selectedLoan = null;
+                this._selectedLoanId = 0;
+            }
+        }
+        else
+        {
+            this._selectedLoan = null;
+            this._selectedLoanId = 0;
+        }       
+    }
 
 }

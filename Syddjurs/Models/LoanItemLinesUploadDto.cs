@@ -15,6 +15,9 @@ namespace Syddjurs.Models
         [JsonPropertyName("itemId")]
         public int ItemId { get; set; }
 
+        [JsonPropertyName("itemName")]
+        public string ItemName { get; set; }
+
         [JsonPropertyName("loanId")]
         public int LoanId { get; set; }
 

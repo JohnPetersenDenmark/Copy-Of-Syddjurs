@@ -57,6 +57,9 @@
 
                                     <Label Text="{Binding Lender}" FontAttributes="Italic" FontSize="16" TextColor="Black"/>
                                     <Label Text="{Binding LoanDate}"  TextColor="Black" />
+
+                                    <Label Text="Id"  TextColor="Black" />
+                                    <Label Text="{Binding Id}"  TextColor="Black" />
                                     <!--<Label Text="{Binding Number}"  TextColor="Black" />-->
 
 

@@ -10,12 +10,6 @@
         <viewmodel:SettingsViewModel />
     </ContentPage.BindingContext>
 
-    <!--<Shell.BackButtonBehavior>
-        <BackButtonBehavior IsEnabled="False" IsVisible="False"/>
-    </Shell.BackButtonBehavior>-->
-    
-    
-
     <VerticalStackLayout  Margin="20,20,20,20"  >
         <HorizontalStackLayout >
             <Label  
@@ -46,14 +40,9 @@
                 <controls:CustomEntry x:Name="Password" Text="{Binding Password}" 
                     Placeholder="Kodeord" 
                     BackgroundColor="{StaticResource White}" TextColor="Black" UnderlineColor="Transparent" >
-                    
+
                 </controls:CustomEntry>
             </Border>
-
-           
-
-
-
         </VerticalStackLayout>
     </VerticalStackLayout>
 </ContentPage>
