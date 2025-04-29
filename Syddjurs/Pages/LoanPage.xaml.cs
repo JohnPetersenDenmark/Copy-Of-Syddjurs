@@ -1,7 +1,11 @@
+using Microsoft.VisualBasic;
 using Syddjurs.Models;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Net.Http;
+using System.Text;
 using System.Text.Json;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Syddjurs.Pages;
 
@@ -39,6 +43,8 @@ public partial class LoanPage : ContentPage
         }
     }
 
+    
+
     public LoanPage()
     {
         InitializeComponent();
@@ -65,7 +71,7 @@ public partial class LoanPage : ContentPage
     {
         try
         {
-            var response = await _httpClient.GetStringAsync("http://192.168.8.105:5000/Home/itemsforlist");
+            var response = await _httpClient.GetStringAsync("http://10.110.240.4:5000/Home/itemsforlist");
 
             var items = JsonSerializer.Deserialize<List<ItemInListDto>>(response);
 
@@ -102,11 +108,12 @@ public partial class LoanPage : ContentPage
             loanItem.ItemName = selectedItem.Name;
             loanItem.Note = "";
             loanItem.Number = 1;
-            //loanItem.Lender = Preferences.Get("UserName", "");
+            loanItem.AvailabeNumber = (int)SelectedItem.Number;
+            
             
             LoanItemList.Add(loanItem);
 
-        ItemRemovedList.Add(selectedItem);
+            ItemRemovedList.Add(selectedItem);
 
             Items.Remove(selectedItem);
 
@@ -142,5 +149,67 @@ public partial class LoanPage : ContentPage
 
     }
 
-    
+    //private void OnEntryNumberOfItemsChanged(object sender, TextChangedEventArgs e)
+    //{
+    //    var newText = e.NewTextValue;
+
+    //    // Do your validation here
+    //    if (string.IsNullOrWhiteSpace(newText))
+    //    {
+    //        // maybe show error or disable a button
+    //    }
+    //    else
+    //    {
+    //        // everything is good
+    //    }
+    //}
+
+    private async void SaveClicked(object sender, EventArgs e)
+    {
+
+        var loan = new LoanUploadDto();      
+
+        loan.Lender = Preferences.Get("UserName", "");
+        var now = DateTime.Now;
+
+        loan.LoanDate = now.ToString("d", new CultureInfo("da-DK"));
+
+
+        foreach (var loanItem in LoanItemList)
+        {
+            var loanItemLine = new LoanItemLinesUploadDto();
+            loanItemLine.ItemId = loanItem.ItemId;
+            loanItemLine.Note = loanItem.Note;
+            loanItemLine.Number = loanItem.Number;
+
+            loan.LoanItemLines.Add(loanItemLine);
+        }
+
+        var json = JsonSerializer.Serialize(loan);
+
+        var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+
+        try
+        {
+            var httpClient = new HttpClient();
+            var response = await httpClient.PostAsync("http://10.110.240.4:5000/Home/uploadloan", content);
+            if (response.IsSuccessStatusCode)
+            {
+                await Application.Current.MainPage.DisplayAlert("Success", "Kategorien er gemt", "OK");
+            }
+            else
+            {
+                await Application.Current.MainPage.DisplayAlert("Error", "Kategorien blev ikke gemt", "OK");
+            }
+        }
+
+        catch (Exception ex)
+        {
+
+        }
+
+    }
+
+
 }

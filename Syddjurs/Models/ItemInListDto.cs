@@ -17,8 +17,19 @@ namespace Syddjurs.Models
         [JsonPropertyName("lendable")]
         public bool Lendable { get; set; }
 
-        [JsonPropertyName("number")]
-        public int? Number { get; set; }
+       
+        public int? _number { get; set; }
+
+        [JsonPropertyName("number")]       
+        public int? Number
+        {
+            get => _number;
+            set
+            {
+                _number = value;
+                OnPropertyChanged(nameof(Number));
+            }
+        }
 
         string _name;
         [JsonPropertyName("name")]

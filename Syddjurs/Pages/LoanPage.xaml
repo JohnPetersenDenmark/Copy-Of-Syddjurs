@@ -4,11 +4,12 @@
              xmlns:controls="clr-namespace:Syddjurs.CustomControls"
              xmlns:local="clr-namespace:Syddjurs.Utilities"
              x:Class="Syddjurs.Pages.LoanPage"
-             Title="Udlån">
+             Title="Nyt lån">
 
     <ContentPage.Resources>
         <ResourceDictionary>
             <local:InverseBoolConverter x:Key="InverseBoolConverter" />
+            <local:IntToStringConverter x:Key="IntToStringConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
     <VerticalStackLayout>
@@ -118,40 +119,70 @@
 
                                 <VerticalStackLayout                                
                                         VerticalOptions="Start"
-                                        Padding="10,0,0,0"
+                                        Padding="0,0,0,0"
                                         HorizontalOptions="Start" 
                                         BackgroundColor="{AppThemeBinding Light='Transparent', Dark='Black'}"
                                         Spacing="5">
 
+                                    <Label Text="Name" FontAttributes="Italic" FontSize="16" TextColor="Black"/>
                                     <Label Text="{Binding ItemName}" FontAttributes="Italic" FontSize="16" TextColor="Black"/>
+
+                                    <Label Text="Antal på lager" FontAttributes="Italic" FontSize="16" TextColor="Black"/>
+                                    <Label Text="{Binding AvailabeNumber}" FontAttributes="Italic" FontSize="16" TextColor="Black"/>
+                                    
 
                                     <Label Text="Antal"  TextColor="Black" />
                                     <Label Text="{Binding Number}"  TextColor="Black" IsVisible="{Binding IsSelected, Converter={StaticResource InverseBoolConverter}}"/>
 
-                                    <Border Stroke="{StaticResource Primary}" IsVisible="{Binding IsSelected}" StrokeThickness="1" Margin="0,0,0,5"  HorizontalOptions="Start"  WidthRequest="50"  HeightRequest="40" >
-                                        <controls:CustomEntry 
-                                            x:Name="NumberOfItemsEntry"   
+                                    <!--<Border Stroke="{StaticResource Primary}"  Padding="0,0,0,0" IsVisible="{Binding IsSelected}" StrokeThickness="1" Margin="10,0,0,5"  HorizontalOptions="Start"  WidthRequest="30"  HeightRequest="40" >
+                                    </Border>-->
+                                    
+                                    
+                                    <!--<controls:CustomEntry 
+                                            x:Name="NumberOfItemsEntry"                                              
                                             IsVisible="{Binding IsSelected}"
-                                            Text="{Binding Number}"                                   
+                                            Text="{Binding Number, Converter={StaticResource IntToStringConverter}}"                                   
                                             Keyboard="Numeric"                                            
-                                            BackgroundColor="Transparent"                                  
+                                                                             
                                             TextColor="Black"
-                                             WidthRequest="100"
-                                             HeightRequest="30"                                            
+                                             WidthRequest="50"
+                                             HeightRequest="50"                                            
                                              HorizontalOptions="Start" 
-                                            UnderlineColor="Transparent" />
-                                    </Border>
+                                            UnderlineColor="Transparent" >
+                                        </controls:CustomEntry>-->
+
+                                    <controls:CustomEntry
+                                             x:Name="NumberOfItemsEntry"  
+                                             IsVisible="{Binding IsSelected}"
+                                            Text="{Binding Number}"    
+                                               WidthRequest="100"
+                                                HeightRequest="50"     
+                                            TextColor="Black"
+                                         Keyboard="Numeric"    
+                                        BackgroundColor="Transparent" 
+                                            UnderlineColor="Transparent" >
+                                    </controls:CustomEntry>
+                                  
+
+                                    <Label
+                                            x:Name="ErrorLabel"
+                                            Text="{Binding ErrorMessage}"
+                                            TextColor="Red"
+                                            IsVisible="{Binding IsErrorVisible}"
+                                            FontSize="Small"
+                                            VerticalOptions="Center" />
 
                                     <Label Text="Note"  TextColor="Black" />
                                     <Label BackgroundColor="Transparent" Text="{Binding Note}"  TextColor="Black" IsVisible="{Binding IsSelected, Converter={StaticResource InverseBoolConverter}}"/>
                                     <Border Stroke="{StaticResource Primary}" IsVisible="{Binding IsSelected}" StrokeThickness="1" Margin="0,0,0,0" WidthRequest="300">
                                         <Editor x:Name="LoanItemNote" 
+                                                
                                             IsVisible="{Binding IsSelected}"
                                             AutoSize="TextChanges"
                                             HeightRequest="100"
-                                                IsSpellCheckEnabled="False"
+                                            IsSpellCheckEnabled="False"
                                             MaxLength="500"
-                                            FontSize="16"
+                                            FontSize="8"
                                             BackgroundColor="Transparent"
                                             TextColor="Black"
                                             Text="{Binding Note}" />
@@ -169,6 +200,8 @@
                                             TextColor="White"
                                             Margin="10" />
 
+                                    
+
                                 </VerticalStackLayout>
                             </Border>
                             </Grid>
@@ -176,6 +209,6 @@
                  </CollectionView.ItemTemplate>
                 </CollectionView>
             </Grid>
-
+        <Button Text="Gem" Clicked="SaveClicked" Padding="0,0,0,0" Margin="10,0,0,10" IsVisible="{Binding IsErrorVisible, Converter={StaticResource InverseBoolConverter}}"/>
     </VerticalStackLayout>
 </ContentPage>

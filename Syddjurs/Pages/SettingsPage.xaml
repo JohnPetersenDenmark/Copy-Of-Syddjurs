@@ -4,7 +4,7 @@
               xmlns:viewmodel="clr-namespace:Syddjurs.ViewModels"     
              xmlns:controls="clr-namespace:Syddjurs.CustomControls"
              x:Class="Syddjurs.Pages.SettingsPage"
-             Title="SettingsPage">
+             Title="Indstillinger">
 
     <ContentPage.BindingContext>
         <viewmodel:SettingsViewModel />

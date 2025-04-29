@@ -141,7 +141,7 @@ public partial class ItemListPage : ContentPage, INotifyPropertyChanged
     {
         try
         {
-            var response = await _httpClient.GetStringAsync("http://192.168.8.105:5000/Home/itemsforlist");
+            var response = await _httpClient.GetStringAsync("http://10.110.240.4:5000/Home/itemsforlist");
 
             var items = JsonSerializer.Deserialize<List<ItemInListDto>>(response);
 

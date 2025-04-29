@@ -120,7 +120,7 @@ public partial class ItemCategory : ContentPage, INotifyPropertyChanged
         try
         {
             var httpClient = new HttpClient();
-            var response = await httpClient.PostAsync("http://10.111.26.121:5213/Home/uploadItemCategory", content);
+            var response = await httpClient.PostAsync("http://10.110.240.4:5000/Home/uploadItemCategory", content);
             if (response.IsSuccessStatusCode)
             {
                 await Application.Current.MainPage.DisplayAlert("Success", "Kategorien er gemt", "OK");
@@ -146,7 +146,7 @@ public partial class ItemCategory : ContentPage, INotifyPropertyChanged
     {
         try
         {            
-            var response = await _httpClient.GetStringAsync("http://10.111.26.121:5213/Home/itemCategories");
+            var response = await _httpClient.GetStringAsync("http://10.110.240.4:5000/Home/itemCategories");
 
             // Deserialize the JSON response into a list of ImageUploadDto
             var categories = JsonSerializer.Deserialize<List<ItemCategoryDto>>(response);
@@ -188,7 +188,7 @@ public partial class ItemCategory : ContentPage, INotifyPropertyChanged
         try
         {
             var httpClient = new HttpClient();
-            var response = await httpClient.PostAsync("http://10.111.26.121:5213/Home/uploadItemCategory", content);
+            var response = await httpClient.PostAsync("http://10.110.240.4:5000/Home/uploadItemCategory", content);
             if (response.IsSuccessStatusCode)
             {
                 await Application.Current.MainPage.DisplayAlert("Success", "Kategorien er gemt", "OK");

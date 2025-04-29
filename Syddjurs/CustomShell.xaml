@@ -5,7 +5,7 @@
              xmlns:UtilPages="clr-namespace:Syddjurs.Pages"
              Title="CustomShell">
 
-    <FlyoutItem Title="Grej"  Icon="settings.png" Route="items">
+    <FlyoutItem Title="Tøj"  Icon="settings.png" Route="items">
 
         <ShellContent Title="Liste"  Icon="settings.png"                     
           ContentTemplate="{DataTemplate UtilPages:ItemListPage}" >
@@ -16,12 +16,7 @@
         </ShellContent>
     </FlyoutItem>
 
-    <FlyoutItem Title="Udlån"  Icon="settings.png" Route="loans">
-
-        <ShellContent Title="Udlån"  Icon="settings.png"                     
-         ContentTemplate="{DataTemplate UtilPages:LoanPage}" >
-        </ShellContent>
-    </FlyoutItem>
+   
     
     <FlyoutItem Title="Kategorier"  Icon="settings.png" Route="categories">
 
@@ -37,10 +32,14 @@
         </ShellContent>
     </FlyoutItem>
 
-    <FlyoutItem Title="Test"  Icon="settings.png" Route="test">
+    <FlyoutItem Title="Udlån"  Icon="settings.png" Route="loans">
 
-        <ShellContent Title="Test"  Icon="settings.png"                     
-            ContentTemplate="{DataTemplate UtilPages:TestPage}" >
+        <ShellContent Title="Mine lån"  Icon="settings.png"                     
+    ContentTemplate="{DataTemplate UtilPages:MyLoansPage}" >
+        </ShellContent>
+
+        <ShellContent Title="Nyt lån"  Icon="settings.png"                     
+      ContentTemplate="{DataTemplate UtilPages:LoanPage}" >
         </ShellContent>
     </FlyoutItem>
 
