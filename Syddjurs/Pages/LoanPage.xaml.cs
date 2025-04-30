@@ -1,6 +1,7 @@
 
 using Microsoft.VisualBasic;
 using Syddjurs.Models;
+using Syddjurs.Utilities;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Net.Http;
@@ -76,11 +77,12 @@ public partial class LoanPage : ContentPage, IQueryAttributable
     {
         try
         {
-            var response = await _httpClient.GetStringAsync("http://10.110.240.4:5000/Home/itemsforlist");
+            var request = new HttpRequestMessage(HttpMethod.Get, "http://10.110.240.4:5000/Home/itemsforlist");
+            var response = await _httpClient.SendWithTokenAsync(request);
 
-            var items = JsonSerializer.Deserialize<List<ItemInListDto>>(response);
+            var items = JsonSerializer.Deserialize<List<ItemInListDto>>(await response.Content.ReadAsStringAsync());
 
-
+       
             Items.Clear();
             foreach (var item in items)
             {
@@ -207,7 +209,10 @@ public partial class LoanPage : ContentPage, IQueryAttributable
         try
         {
             var httpClient = new HttpClient();
-            var response = await httpClient.PostAsync("http://10.110.240.4:5000/Home/uploadloan", content);
+
+            var request = new HttpRequestMessage(HttpMethod.Post, "http://http://10.110.240.4:5000/Home/uploadloan");
+            var response = await _httpClient.SendWithTokenAsync(request);
+            
             if (response.IsSuccessStatusCode)
             {
                 await Application.Current.MainPage.DisplayAlert("Success", "Lånet er gemt", "OK");
@@ -229,12 +234,13 @@ public partial class LoanPage : ContentPage, IQueryAttributable
     {
         try
         {
-            var response = await _httpClient.GetStringAsync("http://10.110.240.4:5000/Home/loanitemlines?loanId=" + loanId);
 
-            var loanItemLines = JsonSerializer.Deserialize<List<LoanItemLinesUploadDto>>(response);
+            var request = new HttpRequestMessage(HttpMethod.Get, "\"http://10.110.240.4:5000/Home/loanitemlines?loanId=\" + loanId");
+            var response = await _httpClient.SendWithTokenAsync(request);
 
+            var loanItemLines = JsonSerializer.Deserialize<List<LoanItemLinesUploadDto>>(await response.Content.ReadAsStringAsync());
 
-            //  LoanItemDto
+           
 
             LoanItemDto loanItemLineDto;
             LoanItemList.Clear();

@@ -1,7 +1,9 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Net.Http;
 using System.Text.Json;
 using Syddjurs.Models;
+using Syddjurs.Utilities;
 
 namespace Syddjurs.Pages;
 
@@ -141,9 +143,10 @@ public partial class ItemListPage : ContentPage, INotifyPropertyChanged
     {
         try
         {
-            var response = await _httpClient.GetStringAsync("http://10.110.240.4:5000/Home/itemsforlist");
+            var request = new HttpRequestMessage(HttpMethod.Get, "http://10.110.240.4:5000/Home/itemsforlist");
+            var response = await _httpClient.SendWithTokenAsync(request);
 
-            var items = JsonSerializer.Deserialize<List<ItemInListDto>>(response);
+            var items =  JsonSerializer.Deserialize<List<ItemInListDto>>(await response.Content.ReadAsStringAsync());
 
 
             Items.Clear();

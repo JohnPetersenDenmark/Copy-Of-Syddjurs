@@ -4,6 +4,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Syddjurs.Models;
+using Syddjurs.Utilities;
 
 namespace Syddjurs.Pages;
 
@@ -153,7 +154,10 @@ public partial class ItemPage : ContentPage, IQueryAttributable, INotifyProperty
         try
         {
             var httpClient = new HttpClient();
-            var response = await httpClient.PostAsync("http://10.110.240.4:5000/Home/uploaditem", content);
+
+            var request = new HttpRequestMessage(HttpMethod.Post, "http://10.110.240.4:5000/Home/uploaditem");
+            var response = await _httpClient.SendWithTokenAsync(request);
+                     
             if (response.IsSuccessStatusCode)
             {
                 await Application.Current.MainPage.DisplayAlert("Success", "Kategorien er gemt", "OK");
@@ -187,11 +191,11 @@ public partial class ItemPage : ContentPage, IQueryAttributable, INotifyProperty
     {
         try
         {
-            var response = await _httpClient.GetStringAsync("http://10.110.240.4:5000/Home/itemCategories");
-           
-            var categories = JsonSerializer.Deserialize<List<ItemCategoryDto>>(response);
+            var request = new HttpRequestMessage(HttpMethod.Get, "http://10.110.240.4:5000/Home/itemCategories");
+            var response = await _httpClient.SendWithTokenAsync(request);
 
-           
+            var categories = JsonSerializer.Deserialize<List<ItemCategoryDto>>(await response.Content.ReadAsStringAsync());
+                       
             CategoryList.Clear();
             foreach (var category in categories)
             {               
@@ -308,12 +312,12 @@ public partial class ItemPage : ContentPage, IQueryAttributable, INotifyProperty
     {
         try
         {
-           
-            var response = await _httpClient.GetStringAsync("http://10.110.240.4:5000/Home/itembyid?id=" + id);
 
-           
-            var item = JsonSerializer.Deserialize<ItemDto>(response);
+            var request = new HttpRequestMessage(HttpMethod.Get, "http://10.110.240.4:5000/Home/itembyid?id=\" + id");
+            var response = await _httpClient.SendWithTokenAsync(request);
 
+            var item = JsonSerializer.Deserialize<ItemDto>(await response.Content.ReadAsStringAsync());
+            
             CopyDtoToEntryFields(item);
 
             _selectedItem = item;

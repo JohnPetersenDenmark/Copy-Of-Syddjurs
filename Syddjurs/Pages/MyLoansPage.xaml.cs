@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Text.Json;
 using Syddjurs.Models;
+using Syddjurs.Utilities;
 
 namespace Syddjurs.Pages;
 
@@ -83,11 +84,10 @@ public partial class MyLoansPage : ContentPage
         {
             var userName = Preferences.Get("UserName", "");
 
+            var request = new HttpRequestMessage(HttpMethod.Get, "http://10.110.240.4:5000/Home/loansforlist?userName=\" + userName");
+            var response = await _httpClient.SendWithTokenAsync(request);
 
-
-            var response = await _httpClient.GetStringAsync("http://10.110.240.4:5000/Home/loansforlist?userName=" + userName);
-
-            var loans = JsonSerializer.Deserialize<List<LoanListDto>>(response);
+            var loans = JsonSerializer.Deserialize<List<LoanListDto>>(await response.Content.ReadAsStringAsync());
 
 
             Loans.Clear();

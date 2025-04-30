@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:Syddjurs.CustomControls"
+             x:Class="Syddjurs.Pages.LoginPage"
+             Title="LoginPage">
+    <VerticalStackLayout>
+        <Border Stroke="Black" StrokeThickness="1" Margin="0, 0,0,10">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="5,5,5,5" />
+            </Border.StrokeShape>
+
+            <controls:CustomEntry x:Name="LoginUserName" 
+                                  Text="{Binding UserName}" 
+                                  Placeholder="Brugernavn" 
+                                  BackgroundColor="{StaticResource White}"
+                                  TextColor="Black" UnderlineColor="Transparent" 
+>
+            </controls:CustomEntry>
+        </Border>
+
+        <Border Stroke="Black" StrokeThickness="1" Margin="0, 0,0,10">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="5,5,5,5" />
+            </Border.StrokeShape>
+            <controls:CustomEntry x:Name="LoginPassword"
+                                Text="{Binding Password}" 
+                                Placeholder="Kodeord" 
+                                BackgroundColor="{StaticResource White}" 
+                                TextColor="Black"
+                                UnderlineColor="Transparent" >
+            </controls:CustomEntry>
+        </Border>
+
+      
+        <Label
+       x:Name="ErrorLabel"
+       Text="{Binding ErrorMessage}"
+       TextColor="Red"
+       IsVisible="{Binding IsError}"
+       FontSize="Small"
+       VerticalOptions="Center" />
+
+        <Button Text="Log på" Clicked="LoginClicked" Padding="0,0,0,0" Margin="10,0,0,10" />
+
+
+
+    </VerticalStackLayout>
+</ContentPage>

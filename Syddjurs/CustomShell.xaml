@@ -52,6 +52,15 @@
        
     </FlyoutItem>
 
+    <FlyoutItem Title="Log på"  Icon="settings.png" Route="items">
+
+        <ShellContent Title="Log på"  Icon="settings.png"                     
+     ContentTemplate="{DataTemplate UtilPages:LoginPage}" >
+        </ShellContent>
+
+
+    </FlyoutItem>
+
     <Shell.FlyoutHeader>
         <Grid BackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" HeightRequest="150">
             <Image Source="logofarvergb.jpg" 

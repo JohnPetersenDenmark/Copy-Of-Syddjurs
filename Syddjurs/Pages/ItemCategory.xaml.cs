@@ -3,6 +3,8 @@ using System.ComponentModel;
 using System.Text;
 using System.Text.Json;
 using Syddjurs.Models;
+using Syddjurs.Utilities;
+using ThreadNetwork;
 
 namespace Syddjurs.Pages;
 
@@ -120,7 +122,9 @@ public partial class ItemCategory : ContentPage, INotifyPropertyChanged
         try
         {
             var httpClient = new HttpClient();
-            var response = await httpClient.PostAsync("http://10.110.240.4:5000/Home/uploadItemCategory", content);
+            var request = new HttpRequestMessage(HttpMethod.Get, "http://10.110.240.4:5000/Home/itemCategories");
+            var response = await _httpClient.SendWithTokenAsync(request);
+                        
             if (response.IsSuccessStatusCode)
             {
                 await Application.Current.MainPage.DisplayAlert("Success", "Kategorien er gemt", "OK");
@@ -145,11 +149,14 @@ public partial class ItemCategory : ContentPage, INotifyPropertyChanged
     private async Task GetCategoriesAsync()
     {
         try
-        {            
-            var response = await _httpClient.GetStringAsync("http://10.110.240.4:5000/Home/itemCategories");
+        {
 
-            // Deserialize the JSON response into a list of ImageUploadDto
-            var categories = JsonSerializer.Deserialize<List<ItemCategoryDto>>(response);
+            var request = new HttpRequestMessage(HttpMethod.Get, "http://10.110.240.4:5000/Home/itemCategories");
+            var response = await _httpClient.SendWithTokenAsync(request);
+
+            var categories = JsonSerializer.Deserialize<List<ItemCategoryDto>>(await response.Content.ReadAsStringAsync());
+
+            
 
             // Clear the collection and add the fetched data
 
@@ -188,7 +195,10 @@ public partial class ItemCategory : ContentPage, INotifyPropertyChanged
         try
         {
             var httpClient = new HttpClient();
-            var response = await httpClient.PostAsync("http://10.110.240.4:5000/Home/uploadItemCategory", content);
+
+            var request = new HttpRequestMessage(HttpMethod.Post, "http://10.110.240.4:5000/Home/uploadItemCategory");
+            var response = await httpClient.SendWithTokenAsync(request);
+            
             if (response.IsSuccessStatusCode)
             {
                 await Application.Current.MainPage.DisplayAlert("Success", "Kategorien er gemt", "OK");
