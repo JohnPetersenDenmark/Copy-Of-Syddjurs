@@ -16,7 +16,7 @@ namespace Syddjurs
 
             var customShell = new CustomShell();
 
-            MainPage = customShell;
+            MainPage = customShell; 
 
 #if ANDROID
             var activity = Platform.CurrentActivity as MainActivity;
