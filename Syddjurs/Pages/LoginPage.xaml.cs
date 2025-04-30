@@ -4,6 +4,7 @@ using Syddjurs.Models;
 using System.ComponentModel;
 using Microsoft.Maui.Storage;
 using System.Net.Http.Json;
+using Syddjurs.Utilities;
 
 namespace Syddjurs.Pages;
 
@@ -111,7 +112,7 @@ public partial class LoginPage : ContentPage, INotifyPropertyChanged
         try
         {
             var httpClient = new HttpClient();
-            var response = await httpClient.PostAsync("http://10.110.240.4:5000/Login/login", content);
+            var response = await httpClient.PostAsync($"{EndpointSettings.ApiBaseUrl}/Login/login", content);
 
             if (response.IsSuccessStatusCode)
             {

@@ -84,7 +84,7 @@ public partial class MyLoansPage : ContentPage
         {
             var userName = Preferences.Get("UserName", "");
 
-            var request = new HttpRequestMessage(HttpMethod.Get, "http://10.110.240.4:5000/Home/loansforlist?userName=\" + userName");
+            var request = new HttpRequestMessage(HttpMethod.Get, $"{EndpointSettings.ApiBaseUrl}/Home/loansforlist?userName=" + userName);
             var response = await _httpClient.SendWithTokenAsync(request);
 
             var loans = JsonSerializer.Deserialize<List<LoanListDto>>(await response.Content.ReadAsStringAsync());

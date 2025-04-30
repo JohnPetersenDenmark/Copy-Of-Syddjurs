@@ -121,7 +121,8 @@ public partial class ItemCategory : ContentPage, INotifyPropertyChanged
         try
         {
             var httpClient = new HttpClient();
-            var request = new HttpRequestMessage(HttpMethod.Get, "http://10.110.240.4:5000/Home/itemCategories");
+            var request = new HttpRequestMessage(HttpMethod.Post, $"{EndpointSettings.ApiBaseUrl}/Home/uploadItemCategory");
+            request.Content = content;
             var response = await _httpClient.SendWithTokenAsync(request);
                         
             if (response.IsSuccessStatusCode)
@@ -150,7 +151,7 @@ public partial class ItemCategory : ContentPage, INotifyPropertyChanged
         try
         {
 
-            var request = new HttpRequestMessage(HttpMethod.Get, "http://10.110.240.4:5000/Home/itemCategories");
+            var request = new HttpRequestMessage(HttpMethod.Get, $"{EndpointSettings.ApiBaseUrl}/Home/itemCategories");
             var response = await _httpClient.SendWithTokenAsync(request);
 
             var categories = JsonSerializer.Deserialize<List<ItemCategoryDto>>(await response.Content.ReadAsStringAsync());
@@ -195,7 +196,8 @@ public partial class ItemCategory : ContentPage, INotifyPropertyChanged
         {
             var httpClient = new HttpClient();
 
-            var request = new HttpRequestMessage(HttpMethod.Post, "http://10.110.240.4:5000/Home/uploadItemCategory");
+            var request = new HttpRequestMessage(HttpMethod.Post, $"{EndpointSettings.ApiBaseUrl}/Home/uploadItemCategory");
+            request.Content = content;
             var response = await httpClient.SendWithTokenAsync(request);
             
             if (response.IsSuccessStatusCode)

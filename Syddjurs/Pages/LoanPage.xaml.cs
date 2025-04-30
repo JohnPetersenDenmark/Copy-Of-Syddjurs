@@ -77,7 +77,7 @@ public partial class LoanPage : ContentPage, IQueryAttributable
     {
         try
         {
-            var request = new HttpRequestMessage(HttpMethod.Get, "http://10.110.240.4:5000/Home/itemsforlist");
+            var request = new HttpRequestMessage(HttpMethod.Get, $"{EndpointSettings.ApiBaseUrl}/Home/itemsforlist");
             var response = await _httpClient.SendWithTokenAsync(request);
 
             var items = JsonSerializer.Deserialize<List<ItemInListDto>>(await response.Content.ReadAsStringAsync());
@@ -210,7 +210,9 @@ public partial class LoanPage : ContentPage, IQueryAttributable
         {
             var httpClient = new HttpClient();
 
-            var request = new HttpRequestMessage(HttpMethod.Post, "http://http://10.110.240.4:5000/Home/uploadloan");
+            var request = new HttpRequestMessage(HttpMethod.Post, $"{EndpointSettings.ApiBaseUrl}/Home/uploadloan");
+            request.Content = content;
+
             var response = await _httpClient.SendWithTokenAsync(request);
             
             if (response.IsSuccessStatusCode)
@@ -235,7 +237,7 @@ public partial class LoanPage : ContentPage, IQueryAttributable
         try
         {
 
-            var request = new HttpRequestMessage(HttpMethod.Get, "\"http://10.110.240.4:5000/Home/loanitemlines?loanId=\" + loanId");
+            var request = new HttpRequestMessage(HttpMethod.Get, $"{EndpointSettings.ApiBaseUrl}/Home/loanitemlines?loanId=" + loanId);
             var response = await _httpClient.SendWithTokenAsync(request);
 
             var loanItemLines = JsonSerializer.Deserialize<List<LoanItemLinesUploadDto>>(await response.Content.ReadAsStringAsync());

@@ -1,4 +1,5 @@
 using Syddjurs.Models;
+using Syddjurs.Utilities;
 using System.ComponentModel;
 using System.Text;
 using System.Text.Json;
@@ -109,7 +110,7 @@ public partial class RegisterUserPage : ContentPage, INotifyPropertyChanged
         try
         {
             var httpClient = new HttpClient();
-            var response = await httpClient.PostAsync("http://10.110.240.4:5000/Login/register", content);
+            var response = await httpClient.PostAsync($"{EndpointSettings.ApiBaseUrl}/Login/register", content);
             var responsecontent = await response.Content.ReadAsStringAsync();
 
             if (response.IsSuccessStatusCode)

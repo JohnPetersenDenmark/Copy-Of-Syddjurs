@@ -32,18 +32,23 @@ public partial class ItemListPage : ContentPage, INotifyPropertyChanged
         _httpClient = new HttpClient();
         Items = new ObservableCollection<ItemInListDto>(); // Initialize the collection
 
-        Loaded += ItemListPage_Loaded;
+      //  Loaded += ItemListPage_Loaded;
        
 
         BindingContext = this;
     }
 
-    private void ItemListPage_Loaded(object? sender, EventArgs e)
+    //private void ItemListPage_Loaded(object? sender, EventArgs e)
+    //{
+    //    GetItemsForList();
+    //}
+
+    protected override void OnAppearing()
     {
+        base.OnAppearing();
         GetItemsForList();
+
     }
-
-
 
     private void OnItemSelected(ItemInListDto selectedItem)
     {
@@ -143,7 +148,7 @@ public partial class ItemListPage : ContentPage, INotifyPropertyChanged
     {
         try
         {
-            var request = new HttpRequestMessage(HttpMethod.Get, "http://10.110.240.4:5000/Home/itemsforlist");
+            var request = new HttpRequestMessage(HttpMethod.Get, $"{EndpointSettings.ApiBaseUrl}/Home/itemsforlist");
             var response = await _httpClient.SendWithTokenAsync(request);
 
             var items =  JsonSerializer.Deserialize<List<ItemInListDto>>(await response.Content.ReadAsStringAsync());
