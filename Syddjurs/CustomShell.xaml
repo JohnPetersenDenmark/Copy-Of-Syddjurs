@@ -43,6 +43,15 @@
         </ShellContent>
     </FlyoutItem>
 
+    <FlyoutItem Title="Opret bruger"  Icon="settings.png" Route="items">
+
+        <ShellContent Title="Opret bruger"  Icon="settings.png"                     
+       ContentTemplate="{DataTemplate UtilPages:RegisterUserPage}" >
+        </ShellContent>
+
+       
+    </FlyoutItem>
+
     <Shell.FlyoutHeader>
         <Grid BackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" HeightRequest="150">
             <Image Source="logofarvergb.jpg" 
