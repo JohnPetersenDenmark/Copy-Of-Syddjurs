@@ -205,7 +205,6 @@ public partial class LoanPage : ContentPage, IQueryAttributable
 
         var content = new StringContent(json, Encoding.UTF8, "application/json");
 
-
         try
         {
             var httpClient = new HttpClient();
