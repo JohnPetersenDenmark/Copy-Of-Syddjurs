@@ -2,6 +2,7 @@ using Syddjurs.Models;
 using System.ComponentModel;
 using System.Text;
 using System.Text.Json;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Syddjurs.Pages;
 
@@ -108,15 +109,26 @@ public partial class RegisterUserPage : ContentPage, INotifyPropertyChanged
         try
         {
             var httpClient = new HttpClient();
-            var response = await httpClient.PostAsync("http://192.168.8.105:5000/Login/register", content);
+            var response = await httpClient.PostAsync("http://10.110.240.4:5000/Login/register", content);
+            var responsecontent = await response.Content.ReadAsStringAsync();
+
             if (response.IsSuccessStatusCode)
             {
-                await Application.Current.MainPage.DisplayAlert("Success", "Kategorien er gemt", "OK");
+                ErrorMessage = "Bruger blev oprettet";
+                IsError = true;
+                return; 
             }
-            else
+         
+            var errorObj = JsonSerializer.Deserialize<ErrorResponse>(responsecontent, new JsonSerializerOptions
             {
-                await Application.Current.MainPage.DisplayAlert("Error", "Kategorien blev ikke gemt", "OK");
-            }
+                PropertyNameCaseInsensitive = true
+            });
+
+            ErrorMessage = string.Join("\n", errorObj.Errors); 
+            IsError = true;
+
+            return;
+
         }
 
         catch (Exception ex)

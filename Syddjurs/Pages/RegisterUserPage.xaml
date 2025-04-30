@@ -38,7 +38,7 @@
             </Border.StrokeShape>
             <controls:CustomEntry x:Name="Email"
                            Text="{Binding Email}" 
-                           Placeholder="Kodeord" 
+                           Placeholder="Email" 
                            BackgroundColor="{StaticResource White}" 
                            TextColor="Black"
                            UnderlineColor="Transparent" >
