@@ -11,7 +11,8 @@ namespace Syddjurs
 
             Routing.RegisterRoute(nameof(ItemPage), typeof(ItemPage));
             Routing.RegisterRoute(nameof(LoanPage), typeof(LoanPage));
-           
+            Routing.RegisterRoute(nameof(LoginPage), typeof(LoginPage));
+
 
             var customShell = new CustomShell();
 

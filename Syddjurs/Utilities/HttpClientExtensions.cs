@@ -27,7 +27,7 @@ namespace Syddjurs.Utilities
 
                 MainThread.BeginInvokeOnMainThread(async () =>
                 {
-                    await Shell.Current.GoToAsync("//LoginPage");
+                    await Shell.Current.GoToAsync("LoginPage");
                     await Application.Current.MainPage.DisplayAlert("Session expired", "Please log in again.", "OK");
                 });
             }
