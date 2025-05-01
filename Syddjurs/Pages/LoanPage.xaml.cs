@@ -68,10 +68,20 @@ public partial class LoanPage : ContentPage, IQueryAttributable
     }
 
     private void ItemListPage_Loaded(object? sender, EventArgs e)
-    {       
+    {
         GetItemsForList();
         GetLoanItemsLines(_selectedLoanId);
     }
+
+         protected override void OnDisappearing()
+    {
+        base.OnDisappearing();
+
+        this._selectedLoan = null;
+        this._selectedLoanId = 0;
+
+    }
+    
 
     private async void GetItemsForList()
     {

@@ -7,7 +7,7 @@ using Syddjurs.Utilities;
 
 namespace Syddjurs.Pages;
 
-public partial class MyLoansPage : ContentPage
+public partial class MyLoansPage : ContentPage,  INotifyPropertyChanged
 {
 
     private readonly HttpClient _httpClient;
@@ -65,7 +65,7 @@ public partial class MyLoansPage : ContentPage
             { "LoanToEdit", SelectedLoan }
                 };
 
-        await Shell.Current.GoToAsync("LoanPage", navigationParameter);
+        await Shell.Current.GoToAsync("///addNewLoan", navigationParameter);
     }
 
     private void OnDeleteClicked(object sender, EventArgs e)

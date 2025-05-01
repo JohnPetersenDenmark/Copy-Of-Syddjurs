@@ -34,11 +34,11 @@
 
     <FlyoutItem Title="Udlån"  Icon="settings.png" Route="loans">
 
-        <ShellContent Title="Mine lån"  Icon="settings.png"                     
+        <ShellContent Title="Mine lån" Route="myloanslist" Icon="settings.png"                     
     ContentTemplate="{DataTemplate UtilPages:MyLoansPage}" >
         </ShellContent>
 
-        <ShellContent Title="Nyt lån"  Icon="settings.png"                     
+        <ShellContent Title="Nyt lån" Route="addNewLoan"  Icon="settings.png"                     
       ContentTemplate="{DataTemplate UtilPages:LoanPage}" >
         </ShellContent>
     </FlyoutItem>
