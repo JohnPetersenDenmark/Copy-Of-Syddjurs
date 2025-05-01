@@ -129,6 +129,13 @@ public partial class ItemPage : ContentPage, IQueryAttributable, INotifyProperty
 
          GetCategoriesAsync();
 
+        if (_selectedItemId == 0)
+        {
+            this._selectedItem = null;
+            ClearEntryFields();
+        }
+
+
          FetchItemById(_selectedItemId);
        
     }
@@ -138,6 +145,15 @@ public partial class ItemPage : ContentPage, IQueryAttributable, INotifyProperty
         base.OnAppearing();
         IsDropdownVisible = false;
         IsSexDropdownVisible = false;
+
+    }
+
+    protected override void OnDisappearing()
+    {
+        base.OnDisappearing();
+
+        this._selectedItem = null;
+        this._selectedItemId = 0;
 
     }
 
@@ -260,6 +276,30 @@ public partial class ItemPage : ContentPage, IQueryAttributable, INotifyProperty
         IsLendable = itemDto.Lendable;
     }
 
+    private void ClearEntryFields()
+    {
+
+        ItemName.Text = "";
+        ItemDescription.Text = "";
+
+        //if (itemDto.CategoryId != null && itemDto.CategoryId != 0)
+        //{
+        //    var itemCategoryDto = new ItemCategoryDto();
+
+        //    itemCategoryDto.Id = (int)itemDto.CategoryId;
+        //    itemCategoryDto.Category = itemDto.CategoryText;
+
+        //    SelectedCategory = itemCategoryDto;
+        //}
+
+        SelectedSex = ""; 
+        NumberOfItemsEntry.Text = "0";
+
+        ColorEntry.Text = ""; 
+        SizeEntry.Text = ""; 
+        IsLendable = true;
+    }
+
     private void CopyEntryFieldsToDto(ItemDto itemDto)
     {
         itemDto.Id = _selectedItemId;
@@ -314,7 +354,8 @@ public partial class ItemPage : ContentPage, IQueryAttributable, INotifyProperty
     {
         try
         {
-
+            if (id == 0)
+                return;
             var request = new HttpRequestMessage(HttpMethod.Get, $"{EndpointSettings.ApiBaseUrl}/Home/itembyid?id=" + id);
             var response = await _httpClient.SendWithTokenAsync(request);
 

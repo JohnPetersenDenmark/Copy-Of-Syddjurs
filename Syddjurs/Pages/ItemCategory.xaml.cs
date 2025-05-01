@@ -102,7 +102,6 @@ public partial class ItemCategory : ContentPage, INotifyPropertyChanged
             SelectedCategory = selected;
             IsDropdownVisible = false;
             ShowChangeExistingCategoryText = true;
-            CategoryEntryChangeText.Text = selected.Category;
             CategoryEntryChange.Text = selected.Category;
         }
     }

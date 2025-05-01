@@ -132,7 +132,7 @@ public partial class ItemListPage : ContentPage, INotifyPropertyChanged
                     { "ItemToEdit", SelectedItem }
                 };
 
-        await Shell.Current.GoToAsync("ItemPage", navigationParameter);
+        await Shell.Current.GoToAsync("///addItem", navigationParameter);
     }
 
     private void OnDeleteClicked(object sender, EventArgs e)

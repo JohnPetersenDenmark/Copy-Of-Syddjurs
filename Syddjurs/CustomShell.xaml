@@ -5,13 +5,13 @@
              xmlns:UtilPages="clr-namespace:Syddjurs.Pages"
              Title="CustomShell">
 
-    <FlyoutItem Title="Tøj"  Icon="settings.png" Route="items">
+    <FlyoutItem Title="Cloth"  Icon="settings.png" Route="items">
 
-        <ShellContent Title="Liste"  Icon="settings.png"                     
+        <ShellContent Title="Liste"  Route="itemList" Icon="settings.png"                     
           ContentTemplate="{DataTemplate UtilPages:ItemListPage}" >
         </ShellContent>
 
-        <ShellContent Title="Tilføj"  Icon="settings.png"                     
+        <ShellContent Title="Add"   Route="addItem" Icon="settings.png"                     
             ContentTemplate="{DataTemplate UtilPages:ItemPage}" >
         </ShellContent>
     </FlyoutItem>
