@@ -43,7 +43,7 @@
 
         <Button Text="Log på" Clicked="LoginClicked" Padding="0,0,0,0" Margin="10,0,0,10" />
 
-
+       
 
     </VerticalStackLayout>
 </ContentPage>

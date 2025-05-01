@@ -295,7 +295,7 @@ public partial class ItemPage : ContentPage, IQueryAttributable, INotifyProperty
         SelectedSex = ""; 
         NumberOfItemsEntry.Text = "0";
 
-        ColorEntry.Text = ""; 
+        ColorEntry.Text = "Rød"; 
         SizeEntry.Text = ""; 
         IsLendable = true;
     }

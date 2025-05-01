@@ -41,6 +41,7 @@
                             HeightRequest="100"
                         MaxLength="500"
                         FontSize="16"
+                          
                         BackgroundColor="White"
                         TextColor="Black"
                         Text="{Binding Description}" />
@@ -256,6 +257,7 @@
                     </Border.StrokeShape>
                     <controls:CustomEntry x:Name="ColorEntry"                        
                             WidthRequest="200"
+                                           CustomInputType="Normal"
                          BackgroundColor="{StaticResource White}"
                          HorizontalOptions="Start"
                          TextColor="Black"

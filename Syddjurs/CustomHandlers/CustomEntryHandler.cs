@@ -6,6 +6,7 @@ using Microsoft.Maui.Platform;
 
 
 
+
 #if ANDROID
 using Android.Graphics.Drawables;
 using AndroidX.ConstraintLayout.Helper.Widget;
@@ -36,8 +37,43 @@ namespace Syddjurs.CustomHandlers
         public static IPropertyMapper<CustomEntry, CustomEntryHandler> MyMapper = new PropertyMapper<CustomEntry, CustomEntryHandler>(EntryHandler.Mapper)
         {
             [nameof(CustomEntry.UnderlineColor)] = MapUnderlineColor,
+            [nameof(CustomEntry.CustomInputType)] = MapKeyboardInputType
         };
 
+        private static void MapKeyboardInputType(CustomEntryHandler handler, CustomEntry entry)
+        {
+#if ANDROID
+            InputTypes inputType;
+
+            if (handler.PlatformView is AppCompatEditText editText)
+            {
+                switch (entry.CustomInputType)
+                {
+                    case CustomKeyboardInputType.Email:
+                        inputType = InputTypes.ClassText | InputTypes.TextVariationEmailAddress;
+                        break;
+                    case CustomKeyboardInputType.Numeric:
+                        inputType = InputTypes.ClassNumber;
+                        break;
+                    case CustomKeyboardInputType.Normal:
+                        inputType = InputTypes.ClassText | InputTypes.TextFlagMultiLine | InputTypes.TextVariationNormal;
+                        break;
+                    default:
+                        inputType = InputTypes.ClassText  | InputTypes.TextFlagMultiLine | InputTypes.TextVariationNormal;
+                                    //| InputTypes.TextVariationNormal;
+                                    //| InputTypes.TextFlagCapSentences
+                                    //| InputTypes.TextFlagMultiLine
+                                    //| InputTypes.TextVariationNormal;
+                        break;
+                }
+
+                editText.SetRawInputType(inputType);
+                editText.InputType = inputType;
+                editText.ImeOptions = ImeAction.Done;
+            }
+#endif
+        }
+        
 
         public CustomEntryHandler() : base(MyMapper)
         {
@@ -104,11 +140,15 @@ namespace Syddjurs.CustomHandlers
         {
             base.ConnectHandler(nativeView);
 
-
-            if (nativeView is AndroidX.AppCompat.Widget.AppCompatEditText editText)
+            if (nativeView is AppCompatEditText editText)
             {
+                // Set InputType to allow full character input
+                editText.InputType = Android.Text.InputTypes.ClassText | Android.Text.InputTypes.TextFlagCapSentences;
+
                 editText.FocusChange += OnFocusChanged;
             }
+
+          
 
            
         }

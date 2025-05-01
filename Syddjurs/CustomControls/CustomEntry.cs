@@ -38,5 +38,18 @@ namespace Syddjurs.CustomControls
             get => (Color)GetValue(UnderlineColorProperty);
             set => SetValue(UnderlineColorProperty, value);
         }
+
+        public static readonly BindableProperty CustomInputTypeProperty =
+    BindableProperty.Create(
+        nameof(CustomInputType),
+        typeof(CustomKeyboardInputType),
+        typeof(CustomEntry),
+        CustomKeyboardInputType.Normal);
+
+        public CustomKeyboardInputType CustomInputType
+        {
+            get => (CustomKeyboardInputType)GetValue(CustomInputTypeProperty);
+            set => SetValue(CustomInputTypeProperty, value);
+        }
     }
 }
