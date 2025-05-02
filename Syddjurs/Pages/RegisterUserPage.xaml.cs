@@ -1,8 +1,10 @@
+using Microsoft.Maui.ApplicationModel.Communication;
 using Syddjurs.Models;
 using Syddjurs.Utilities;
 using System.ComponentModel;
 using System.Text;
 using System.Text.Json;
+using System.Text.RegularExpressions;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Syddjurs.Pages;
@@ -28,6 +30,18 @@ public partial class RegisterUserPage : ContentPage, INotifyPropertyChanged
         {
             _errorMessage = value;
             OnPropertyChanged(nameof(ErrorMessage));
+        }
+    }
+
+    string _email;
+    public string Email
+    {
+        get => _email;
+        set
+        {
+            _email = value;
+            ValidateEmail();
+            OnPropertyChanged(nameof(Email));
         }
     }
 
@@ -65,9 +79,9 @@ public partial class RegisterUserPage : ContentPage, INotifyPropertyChanged
 	{		
 		var registerDto = new RegisterUserDto();
 
-        registerDto.UserName = UserName;
+       // registerDto.UserName = UserName;
         registerDto.Password = Password;
-        registerDto.Email = Email.Text;
+        registerDto.Email = RegisterEmail.Text;
 
         await RegisterAsync(registerDto);
 
@@ -86,6 +100,28 @@ public partial class RegisterUserPage : ContentPage, INotifyPropertyChanged
         IsError = false;
         return ;
 	}
+
+    private void ValidateEmail()
+    {
+        if (RegisterEmail.Text == "")
+        {
+            ErrorMessage = "Email skal udfyldes";
+            IsError = true;
+            return;
+        }
+
+        var emailRegex = new Regex(@"^[^@\s]+@[^@\s]+\.[^@\s]+$");
+        if(! emailRegex.IsMatch(RegisterEmail.Text))
+        {
+            ErrorMessage = "Ugyldig email";
+            IsError = true;
+            return;
+        }
+
+        ErrorMessage = "";
+        IsError = false;
+        return;
+    }
 
     private void ValidatePassword()
     {        

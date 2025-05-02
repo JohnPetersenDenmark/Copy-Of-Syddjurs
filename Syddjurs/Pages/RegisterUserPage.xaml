@@ -5,7 +5,7 @@
               xmlns:controls="clr-namespace:Syddjurs.CustomControls"
              Title="Registrer bruger">
     <VerticalStackLayout>
-        <Border Stroke="Black" StrokeThickness="1" Margin="0, 0,0,10">
+        <!--<Border Stroke="Black" StrokeThickness="1" Margin="0, 0,0,10">
             <Border.StrokeShape>
                 <RoundRectangle CornerRadius="5,5,5,5" />
             </Border.StrokeShape>
@@ -16,6 +16,19 @@
                                     BackgroundColor="{StaticResource White}"
                                     TextColor="Black" UnderlineColor="Transparent" 
   >
+            </controls:CustomEntry>
+        </Border>-->
+
+        <Border Stroke="Black" StrokeThickness="1" Margin="0, 0,0,10">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="5,5,5,5" />
+            </Border.StrokeShape>
+            <controls:CustomEntry x:Name="RegisterEmail"
+                    Text="{Binding Email}" 
+                    Placeholder="Email/bruger" 
+                    BackgroundColor="{StaticResource White}" 
+                    TextColor="Black"
+                    UnderlineColor="Transparent" >
             </controls:CustomEntry>
         </Border>
 
@@ -32,18 +45,7 @@
             </controls:CustomEntry>
         </Border>
 
-        <Border Stroke="Black" StrokeThickness="1" Margin="0, 0,0,10">
-            <Border.StrokeShape>
-                <RoundRectangle CornerRadius="5,5,5,5" />
-            </Border.StrokeShape>
-            <controls:CustomEntry x:Name="Email"
-                           Text="{Binding Email}" 
-                           Placeholder="Email" 
-                           BackgroundColor="{StaticResource White}" 
-                           TextColor="Black"
-                           UnderlineColor="Transparent" >
-            </controls:CustomEntry>
-        </Border>
+       
         <Label
          x:Name="ErrorLabel"
          Text="{Binding ErrorMessage}"

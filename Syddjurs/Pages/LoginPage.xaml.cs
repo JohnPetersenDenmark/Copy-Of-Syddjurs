@@ -59,7 +59,24 @@ public partial class LoginPage : ContentPage, INotifyPropertyChanged
     public LoginPage()
     {
         InitializeComponent();
+        
         BindingContext = this;
+    }
+
+
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+        UserName = SecureStorage.GetAsync("userLogin").Result;
+    }
+
+    protected override void OnDisappearing()
+    {
+        base.OnDisappearing();
+
+        UserName = "";
+        Password = "";
+
     }
 
     private async void LoginClicked(object sender, EventArgs e)
@@ -122,6 +139,8 @@ public partial class LoginPage : ContentPage, INotifyPropertyChanged
                 {
                     // Store the token securely
                     await SecureStorage.SetAsync("auth_token", loginResponse.Token);
+                    var userName = JwtHelper.GetUserNameFromToken(loginResponse.Token);
+                    await SecureStorage.SetAsync("userLogin", userName);
                 }
 
                 ErrorMessage = "";
