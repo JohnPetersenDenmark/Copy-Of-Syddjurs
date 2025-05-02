@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 
 namespace Syddjurs.Utilities
 {
@@ -28,7 +29,7 @@ namespace Syddjurs.Utilities
 
             foreach(var claim in token.Claims)
             {
-                if (claim.Type == "name")
+                if (claim.Type == ClaimTypes.Name)
                 {
                      userName = claim.Value;
                 }

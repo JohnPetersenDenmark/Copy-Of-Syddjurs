@@ -13,6 +13,8 @@
             <controls:CustomEntry x:Name="LoginUserName" 
                                   Text="{Binding UserName}" 
                                   Placeholder="Brugernavn" 
+                                  CustomInputType="Normal"
+                                  Keyboard="Text"
                                   BackgroundColor="{StaticResource White}"
                                   TextColor="Black" UnderlineColor="Transparent" 
 >
@@ -32,7 +34,21 @@
             </controls:CustomEntry>
         </Border>
 
-      
+        <Border Stroke="Black" StrokeThickness="1" Margin="0, 0,0,10">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="5,5,5,5" />
+            </Border.StrokeShape>
+            <Entry x:Name="test"
+                          Text="{Binding Password}" 
+                          Placeholder="Kodeord" 
+                   Keyboard="Text"
+                          BackgroundColor="{StaticResource White}" 
+                          TextColor="Black">
+
+            </Entry>
+        </Border>
+
+
         <Label
        x:Name="ErrorLabel"
        Text="{Binding ErrorMessage}"
