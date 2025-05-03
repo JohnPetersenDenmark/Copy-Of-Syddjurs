@@ -186,7 +186,8 @@ public partial class LoanPage : ContentPage, IQueryAttributable
 
         var loan = new LoanUploadDto();      
 
-        loan.Lender = Preferences.Get("UserName", "");
+        loan.Lender = await SecureStorage.GetAsync("userLogin");
+
         var now = DateTime.Now;
         if (_selectedLoan != null)
         {

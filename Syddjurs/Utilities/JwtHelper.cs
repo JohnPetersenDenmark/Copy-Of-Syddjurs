@@ -24,8 +24,7 @@ namespace Syddjurs.Utilities
 
             var token = handler.ReadJwtToken(jwtToken);
 
-            // Try the most common claim types
-             //userName = token.Claims.FirstOrDefault(c => c.Type == "name");
+        
 
             foreach(var claim in token.Claims)
             {
@@ -34,11 +33,7 @@ namespace Syddjurs.Utilities
                      userName = claim.Value;
                 }
             }
-            // token.Claims.FirstOrDefault(c => c.Type == "email")?.Value ??
-            // token.Claims.FirstOrDefault(c => c.Type == "name")?.Value ??
-            // token.Claims.FirstOrDefault(c => c.Type == "preferred_username")?.Value ??
-            // token.Claims.FirstOrDefault(c => c.Type == "sub")?.Value;
-
+         
             return userName;
         }
     }

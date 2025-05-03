@@ -82,7 +82,9 @@ public partial class MyLoansPage : ContentPage,  INotifyPropertyChanged
     {
         try
         {
-            var userName = Preferences.Get("UserName", "");
+            
+
+            var userName = await SecureStorage.GetAsync("userLogin");
 
             var request = new HttpRequestMessage(HttpMethod.Get, $"{EndpointSettings.ApiBaseUrl}/Home/loansforlist?userName=" + userName);
             var response = await _httpClient.SendWithTokenAsync(request);
