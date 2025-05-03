@@ -134,7 +134,10 @@ public partial class LoginPage : ContentPage, INotifyPropertyChanged
             if (response.IsSuccessStatusCode)
             {
                 // Deserialize the response into LoginResponse
-                var loginResponse = await response.Content.ReadFromJsonAsync<LoginResponse>();
+                 var loginResponse = await response.Content.ReadFromJsonAsync<LoginResponse>();
+
+                //var loginResponse = await response.Content.ReadAsStringAsync(); 
+
                 if (loginResponse != null)
                 {
                     // Store the token securely
