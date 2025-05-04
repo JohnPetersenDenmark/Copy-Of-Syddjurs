@@ -144,6 +144,9 @@ public partial class LoginPage : ContentPage, INotifyPropertyChanged
                     await SecureStorage.SetAsync("auth_token", loginResponse.Token);
                     var userName = JwtHelper.GetUserNameFromToken(loginResponse.Token);
                     await SecureStorage.SetAsync("userLogin", userName);
+
+                    HandleShellMenuBasenOnRoles.HideShowMenuItems(loginResponse.Token);
+
                 }
 
                 ErrorMessage = "";

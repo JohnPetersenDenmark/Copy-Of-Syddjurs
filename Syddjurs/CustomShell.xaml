@@ -5,7 +5,7 @@
              xmlns:UtilPages="clr-namespace:Syddjurs.Pages"
              Title="CustomShell">
 
-    <FlyoutItem Title="Cloth"  Icon="settings.png" Route="items">
+    <FlyoutItem IsVisible="False" Title="Cloth"  Icon="settings.png" Route="items">
 
         <ShellContent Title="Liste"  Route="itemList" Icon="settings.png"                     
           ContentTemplate="{DataTemplate UtilPages:ItemListPage}" >
@@ -43,7 +43,7 @@
         </ShellContent>
     </FlyoutItem>
 
-    <FlyoutItem Title="Opret bruger"  Icon="settings.png" Route="items">
+    <FlyoutItem Title="Opret bruger"  Icon="settings.png" Route="register">
 
         <ShellContent Title="Opret bruger"  Icon="settings.png"                     
        ContentTemplate="{DataTemplate UtilPages:RegisterUserPage}" >
@@ -52,7 +52,7 @@
        
     </FlyoutItem>
 
-    <FlyoutItem Title="Log på"  Icon="settings.png" Route="items">
+    <FlyoutItem Title="Log på"  Icon="settings.png" Route="login">
 
         <ShellContent Title="Log på"  Icon="settings.png"                     
      ContentTemplate="{DataTemplate UtilPages:LoginPage}" >

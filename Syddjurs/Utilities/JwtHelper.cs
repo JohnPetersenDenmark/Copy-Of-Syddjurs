@@ -36,5 +36,33 @@ namespace Syddjurs.Utilities
          
             return userName;
         }
+
+        public static List<Claim> GetUserRolesFromToken(string jwtToken)
+        {
+            var roles = new List<Claim>();
+
+            if (string.IsNullOrWhiteSpace(jwtToken))
+                return null;
+
+            var handler = new JwtSecurityTokenHandler();
+
+            if (!handler.CanReadToken(jwtToken))
+                return null;
+
+            var token = handler.ReadJwtToken(jwtToken);
+
+
+
+            foreach (var claim in token.Claims)
+            {
+                if (claim.Type == ClaimTypes.Role)
+                {
+                    roles.Add(claim);
+                   
+                }
+            }
+
+            return roles;
+        }
     }
 }
