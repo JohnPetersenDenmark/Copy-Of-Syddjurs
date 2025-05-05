@@ -40,11 +40,12 @@
             </Border.StrokeShape>
             <Entry x:Name="test"
                           Text="{Binding Password}" 
-                          Placeholder="Kodeord" 
-                   Keyboard="Text"
+                          Placeholder="Test" 
+                   Keyboard="Plain"
+                    
                           BackgroundColor="{StaticResource White}" 
                           TextColor="Black">
-
+  
             </Entry>
         </Border>
 

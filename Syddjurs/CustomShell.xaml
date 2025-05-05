@@ -25,12 +25,12 @@
         </ShellContent>
     </FlyoutItem>
 
-    <FlyoutItem Title="Indstillinger"  Icon="settings.png" Route="settings">
+    <!--<FlyoutItem Title="Indstillinger"  Icon="settings.png" Route="settings">
 
         <ShellContent Title="Indstillinger"  Icon="settings.png"                     
              ContentTemplate="{DataTemplate UtilPages:SettingsPage}" >
         </ShellContent>
-    </FlyoutItem>
+    </FlyoutItem>-->
 
     <FlyoutItem Title="Udlån"  Icon="settings.png" Route="loans">
 
