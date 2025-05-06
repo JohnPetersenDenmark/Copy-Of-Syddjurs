@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Syddjurs.Pages.AdminUsersPage1"
+             Title="AdminUsersPage1">
+    <Grid RowDefinitions="Auto,*" Padding="10">
+
+
+        <!-- CollectionView -->
+        <CollectionView x:Name="UsersCollectionView"
+                     Grid.Row="1"                        
+                     ItemsSource="{Binding Users}"
+                     SelectionMode="Single"
+                     
+                     BackgroundColor="{StaticResource onPrimaryContainer}"
+                     Margin="10,0,10,10"
+                      SelectedItem="{Binding SelectedUser, Mode=TwoWay}">
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <!--<Frame BackgroundColor="Beige">
+                     <Frame.GestureRecognizers>
+                         <TapGestureRecognizer Tapped="OnItemTapped" />
+                     </Frame.GestureRecognizers>-->
+                    <Grid Padding="0" Margin="0,10,0,10">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup Name="CommonStates">
+                                <VisualState Name="Normal">
+                                    <VisualState.Setters>
+                                        <Setter Property="BackgroundColor" Value="#f8e9f1" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState Name="Selected">
+                                    <VisualState.Setters>
+                                        <Setter Property="BackgroundColor" Value="#FAF0E6" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Border IsVisible="{Binding ShowInList}" Stroke="{StaticResource Primary}"  StrokeThickness="1" Margin="0, 0,0,0" >
+                            <StackLayout  Margin="0, 0 , 0, 0"
+                              Padding="10"
+                            
+                              Orientation="Horizontal"
+                              HorizontalOptions="Fill"
+                              VerticalOptions="Center"
+                                     
+                              Spacing="0">
+
+                                <!-- Details & Buttons -->
+                                <StackLayout Orientation="Vertical"
+                                           
+                                  VerticalOptions="Center"
+                                  Padding="10,0"
+                                  BackgroundColor="{AppThemeBinding Light='Transparent', Dark='Black'}"
+                                  Spacing="5">
+
+                                    <Label Text="{Binding UserName}" FontAttributes="Italic" FontSize="16" TextColor="Black"/>
+                                    <Label Text="{Binding Email}"  TextColor="Black" />
+
+
+                                    <CollectionView ItemsSource="{Binding Roles}"
+                                ItemsLayout="HorizontalList"
+                                Margin="0,10,0,0">
+                                        <CollectionView.ItemTemplate>
+                                            <DataTemplate>
+                                                <StackLayout Padding="5" Margin="5" BackgroundColor="LightGray" Orientation="Horizontal" Spacing="10">
+                                                    <CheckBox IsChecked="{Binding IsChecked}" IsEnabled="{Binding CheckBoxEnabled}"/>
+                                                    <Label Text="{Binding RoleName}" VerticalOptions="Center" />
+                                                </StackLayout>
+                                            </DataTemplate>
+                                        </CollectionView.ItemTemplate>
+                                    </CollectionView>
+
+                                    <HorizontalStackLayout  
+                                 HorizontalOptions="Center"
+                                 IsVisible="{Binding IsSelected}"
+                                 Spacing="0">
+
+                                        <Button Text="Ok" 
+                                            HeightRequest="20"
+                                            MinimumHeightRequest="20"
+							                CornerRadius="5" 
+                                            Padding="10, 0,10,0"
+                                            Clicked="OnOkClicked"
+                                            BackgroundColor="{StaticResource Primary}"
+                                            TextColor="White"
+                                            Margin="10" />
+                                    </HorizontalStackLayout>
+                                </StackLayout>
+                            </StackLayout>
+                        </Border>
+                    </Grid>
+                    <!--</Frame>-->
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>

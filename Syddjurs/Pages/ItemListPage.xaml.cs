@@ -123,6 +123,8 @@ public partial class ItemListPage : ContentPage, INotifyPropertyChanged
     {
         Console.WriteLine("Tapped item!");
     }
+
+
     private async void OnEditClicked(object sender, EventArgs e)
     {
         if (SelectedItem == null) return;

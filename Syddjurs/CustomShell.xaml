@@ -48,8 +48,13 @@
         <ShellContent Title="Opret bruger"  Icon="settings.png"                     
        ContentTemplate="{DataTemplate UtilPages:RegisterUserPage}" >
         </ShellContent>
+    </FlyoutItem>
 
-       
+    <FlyoutItem Title="Roller"  Icon="settings.png" Route="adminRoles">
+
+        <ShellContent Title="Roller"  Icon="settings.png"                     
+     ContentTemplate="{DataTemplate UtilPages:AdminUsersPage1}" >
+        </ShellContent>
     </FlyoutItem>
 
     <FlyoutItem Title="Log på"  Icon="settings.png" Route="login">

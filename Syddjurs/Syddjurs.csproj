@@ -71,6 +71,9 @@
 	  <MauiXaml Update="CustomShell.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Pages\AdminUsersPage1.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Pages\ItemCategory.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
