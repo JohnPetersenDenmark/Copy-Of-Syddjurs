@@ -48,7 +48,7 @@
                               Spacing="0">
 
                                 <!-- Details & Buttons -->
-                                <StackLayout Orientation="Vertical"
+                                <VerticalStackLayout 
                                            
                                   VerticalOptions="Center"
                                   Padding="10,0"
@@ -60,12 +60,12 @@
 
 
                                     <CollectionView ItemsSource="{Binding Roles}"
-                                ItemsLayout="HorizontalList"
+                               
                                 Margin="0,10,0,0">
                                         <CollectionView.ItemTemplate>
                                             <DataTemplate>
-                                                <StackLayout Padding="5" Margin="5" BackgroundColor="LightGray" Orientation="Horizontal" Spacing="10">
-                                                    <CheckBox IsChecked="{Binding IsChecked}" IsEnabled="{Binding CheckBoxEnabled}"/>
+                                                <StackLayout Padding="0" Margin="0"  Orientation="Horizontal" Spacing="10">
+                                                    <CheckBox IsChecked="{Binding IsCheckBoxChecked}" IsEnabled="{Binding CheckBoxEnabled}"/>
                                                     <Label Text="{Binding RoleName}" VerticalOptions="Center" />
                                                 </StackLayout>
                                             </DataTemplate>
@@ -77,17 +77,27 @@
                                  IsVisible="{Binding IsSelected}"
                                  Spacing="0">
 
-                                        <Button Text="Ok" 
+                                        <Button Text="Gem" 
                                             HeightRequest="20"
                                             MinimumHeightRequest="20"
 							                CornerRadius="5" 
                                             Padding="10, 0,10,0"
-                                            Clicked="OnOkClicked"
+                                            Clicked="OnSaveClicked"
+                                            BackgroundColor="{StaticResource Primary}"
+                                            TextColor="White"
+                                            Margin="10" />
+
+                                        <Button Text="Annuler" 
+                                            HeightRequest="20"
+                                            MinimumHeightRequest="20"
+                                            CornerRadius="5" 
+                                            Padding="10, 0,10,0"
+                                            Clicked="OnCancelClicked"
                                             BackgroundColor="{StaticResource Primary}"
                                             TextColor="White"
                                             Margin="10" />
                                     </HorizontalStackLayout>
-                                </StackLayout>
+                                </VerticalStackLayout>
                             </StackLayout>
                         </Border>
                     </Grid>

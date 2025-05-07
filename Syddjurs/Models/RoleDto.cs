@@ -18,14 +18,14 @@ namespace Syddjurs.Models
         public string RoleName { get; set; }
 
 
-        bool? _isChecked;
-        public bool? IsChecked
+        bool? _isCheckBoxChecked;
+        public bool? IsCheckBoxChecked
         {
-            get => _isChecked;
+            get => _isCheckBoxChecked;
             set
             {
-                _isChecked = value;
-                OnPropertyChanged(nameof(IsChecked));
+                _isCheckBoxChecked = value;
+                OnPropertyChanged(nameof(IsCheckBoxChecked));
             }
         }
 

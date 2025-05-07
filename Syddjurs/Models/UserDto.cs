@@ -11,6 +11,15 @@ namespace Syddjurs.Models
     public  class UserDto : INotifyPropertyChanged
     {
 
+        public UserDto()
+        {
+             Roles = new List<RoleDto>();
+        }
+
+        [JsonPropertyName("id")]
+        public string Id { get; set; }
+
+
         [JsonPropertyName("userName")]
         public string UserName { get; set; }
 
