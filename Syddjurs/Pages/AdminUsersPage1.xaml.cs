@@ -145,7 +145,9 @@ public partial class AdminUsersPage1 : ContentPage, INotifyPropertyChanged
                             CheckBoxEnabled = false
                         });
                     }
-                }                
+                }
+                
+
                 Users.Add(user);
             }
         }
