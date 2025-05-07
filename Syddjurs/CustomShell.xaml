@@ -57,6 +57,13 @@
         </ShellContent>
     </FlyoutItem>
 
+    <FlyoutItem Title="Tilføj rolle"  Icon="settings.png" Route="addRoles">
+
+        <ShellContent Title="Tilføj rolle"  Icon="settings.png"                     
+  ContentTemplate="{DataTemplate UtilPages:RoleAddPage}" >
+        </ShellContent>
+    </FlyoutItem>
+
     <FlyoutItem Title="Log på"  Icon="settings.png" Route="login">
 
         <ShellContent Title="Log på"  Icon="settings.png"                     

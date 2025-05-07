@@ -17,7 +17,6 @@ namespace Syddjurs.Models
         [JsonPropertyName("roleName")]
         public string RoleName { get; set; }
 
-
         bool? _isCheckBoxChecked;
         public bool? IsCheckBoxChecked
         {
@@ -26,6 +25,17 @@ namespace Syddjurs.Models
             {
                 _isCheckBoxChecked = value;
                 OnPropertyChanged(nameof(IsCheckBoxChecked));
+            }
+        }
+
+        bool? _isSelected;
+        public bool? IsSelected
+        {
+            get => _isSelected;
+            set
+            {
+                _isSelected = value;
+                OnPropertyChanged(nameof(IsSelected));
             }
         }
 
