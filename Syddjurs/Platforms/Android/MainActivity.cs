@@ -1,34 +1,50 @@
 ﻿using Android.App;
+using Android.Content;
 using Android.Content.PM;
 using Android.OS;
 using Android.Views;
+using Microsoft.Maui;
 using Microsoft.Maui.Controls;
-using Android.Graphics;
+using Microsoft.Maui.Controls.PlatformConfiguration.AndroidSpecific;
 
-namespace Syddjurs
+namespace com.companyname.syddjurs
 {
-    [Activity(Theme = "@style/Maui.SplashTheme", MainLauncher = true, LaunchMode = LaunchMode.SingleTop, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize | ConfigChanges.Density)]
-    public  class MainActivity : MauiAppCompatActivity
+    [Activity(
+        Label = "Syddjurs",
+        Theme = "@style/Maui.SplashTheme",
+        MainLauncher = true,
+        LaunchMode = LaunchMode.SingleTop,
+        ConfigurationChanges = ConfigChanges.ScreenSize
+                             | ConfigChanges.Orientation
+                             | ConfigChanges.UiMode
+                             | ConfigChanges.ScreenLayout
+                             | ConfigChanges.SmallestScreenSize
+                             | ConfigChanges.Density)]
+    public class MainActivity : MauiAppCompatActivity
     {
+        public static string? SharedText { get; private set; }
+
         protected override void OnCreate(Bundle? savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
 
-            Microsoft.Maui.ApplicationModel.Platform.Init(this, savedInstanceState);
+            HandleSharedText(Intent);
+            // SetSystemBarColors("#8e1157");
+        }
 
-            // Set status bar color
-            Window.SetStatusBarColor(Android.Graphics.Color.ParseColor("#8e1157")); // Your desired hex color
+        protected override void OnNewIntent(Intent? intent)
+        {
+            base.OnNewIntent(intent);
+            if (intent != null)
+                HandleSharedText(intent);
+        }
 
-            // Optional: Set navigation bar color
-            Window.SetNavigationBarColor(Android.Graphics.Color.ParseColor("#8e1157"));
-
-            // Optional: Make status bar icons dark or light
-            //if (Build.VERSION.SdkInt >= BuildVersionCodes.M)
-            //{
-            //    var flags = (StatusBarVisibility)Window.DecorView.SystemUiVisibility;
-            //    flags |= StatusBarVisibility.LightStatusBar; // Light text = remove this
-            //    Window.DecorView.SystemUiVisibility = (StatusBarVisibility)flags;
-            //}
+        private void HandleSharedText(Intent intent)
+        {
+            if (intent.Action == Intent.ActionSend && intent.Type == "text/plain")
+            {
+                SharedText = intent.GetStringExtra(Intent.ExtraText);
+            }
         }
 
         public void SetSystemBarColorsBasedOnTheme(bool isDarkTheme)

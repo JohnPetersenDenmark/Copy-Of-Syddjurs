@@ -5,6 +5,16 @@
              xmlns:UtilPages="clr-namespace:Syddjurs.Pages"
              Title="CustomShell">
 
+    <FlyoutItem Title="Log på"  Icon="settings.png" Route="login">
+
+        <ShellContent Title="Log på"  Icon="settings.png"                     
+   ContentTemplate="{DataTemplate UtilPages:LoginPage}" >
+        </ShellContent>
+
+
+    </FlyoutItem>
+
+
     <FlyoutItem IsVisible="False" Title="Cloth"  Icon="settings.png" Route="items">
 
         <ShellContent Title="Liste"  Route="itemList" Icon="settings.png"                     
@@ -64,14 +74,7 @@
         </ShellContent>
     </FlyoutItem>
 
-    <FlyoutItem Title="Log på"  Icon="settings.png" Route="login">
-
-        <ShellContent Title="Log på"  Icon="settings.png"                     
-     ContentTemplate="{DataTemplate UtilPages:LoginPage}" >
-        </ShellContent>
-
-
-    </FlyoutItem>
+  
 
     <Shell.FlyoutHeader>
         <Grid BackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" HeightRequest="150">

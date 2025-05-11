@@ -1,4 +1,7 @@
-﻿using Microsoft.Maui.Controls;
+﻿#if ANDROID
+using com.companyname.syddjurs;
+#endif
+using Microsoft.Maui.Controls;
 using Syddjurs.Pages;
 
 namespace Syddjurs
@@ -14,9 +17,14 @@ namespace Syddjurs
             Routing.RegisterRoute(nameof(LoginPage), typeof(LoginPage));
 
 
-            var customShell = new CustomShell();
+            //var customShell = new CustomShell();
 
-            MainPage = customShell; 
+           // MainPage = customShell; 
+
+
+
+
+
 
 #if ANDROID
             var activity = Platform.CurrentActivity as MainActivity;
@@ -29,6 +37,11 @@ namespace Syddjurs
                 act?.SetSystemBarColorsBasedOnTheme(e.RequestedTheme == AppTheme.Dark);
             };
 #endif
+        }
+
+        protected override Window CreateWindow(IActivationState? activationState)
+        {
+            return new Window(new CustomShell());            
         }
     }
 }

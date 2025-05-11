@@ -68,7 +68,22 @@ public partial class LoginPage : ContentPage, INotifyPropertyChanged
     {
         base.OnAppearing();
         UserName = SecureStorage.GetAsync("userLogin").Result;
+
+        //var apps = Application.Context.PackageName
+
+//#if ANDROID
+//    string? receivedText = Platform.CurrentActivity is MainActivity activity
+//        ? MainActivity.SharedText
+//        : null;
+
+//    if (!string.IsNullOrEmpty(receivedText))
+//    {
+//        DisplayAlert("Received", $"Text shared: {receivedText}", "OK");
+//    }
+//#endif
+
     }
+    
 
     protected override void OnDisappearing()
     {

@@ -1,6 +1,74 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
-	<application android:usesCleartextTraffic="true" android:allowBackup="true" android:icon="@mipmap/appicon" android:roundIcon="@mipmap/appicon_round" android:supportsRtl="true"></application>
-	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+<!--<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="Syddjurs">
+
+	<application
+        android:label="Syddjurs"
+		android:name="com.companyname.syddjurs"
+        android:icon="@mipmap/appicon"
+        android:roundIcon="@mipmap/appicon_round"
+        android:allowBackup="true"
+        android:usesCleartextTraffic="true"
+        android:supportsRtl="true">
+
+		<activity android:name="com.companyname.syddjurs.MainActivity"
+                  android:exported="true"
+                  android:label="Syddjurs"
+                  android:launchMode="singleTop"
+                  android:theme="@style/Maui.SplashTheme"
+                  android:configChanges="screenSize|orientation|uiMode|screenLayout|smallestScreenSize|density">
+
+			 Launcher intent (app starts normally) 
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN" />
+				<category android:name="android.intent.category.LAUNCHER" />
+			</intent-filter>
+
+			--><!-- Receive shared text (e.g. from SMS or other apps) --><!--
+			<intent-filter>
+				<action android:name="android.intent.action.SEND" />
+				<category android:name="android.intent.category.DEFAULT" />
+				<data android:mimeType="text/plain" />
+			</intent-filter>
+
+		</activity>
+	</application>
+
+	--><!-- Permissions --><!--
 	<uses-permission android:name="android.permission.INTERNET" />
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+</manifest>-->
+
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="com.companyname.syddjurs">
+
+	<application
+        android:label="Syddjurs"
+        android:icon="@mipmap/appicon"
+        android:roundIcon="@mipmap/appicon_round"
+        android:allowBackup="true"
+        android:usesCleartextTraffic="true"
+        android:supportsRtl="true">
+
+		<activity android:name="com.companyname.syddjurs.MainActivity"
+                  android:exported="true"
+                  android:label="Syddjurs"
+                  android:launchMode="singleTop"
+                  android:theme="@style/Maui.SplashTheme"
+                  android:configChanges="screenSize|orientation|uiMode|screenLayout|smallestScreenSize|density">
+
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN" />
+				<category android:name="android.intent.category.LAUNCHER" />
+			</intent-filter>
+
+			<intent-filter>
+				<action android:name="android.intent.action.SEND" />
+				<category android:name="android.intent.category.DEFAULT" />
+				<data android:mimeType="text/plain" />
+			</intent-filter>
+
+		</activity>
+	</application>
 </manifest>
