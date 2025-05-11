@@ -1,24 +1,30 @@
-
+#if ANDROID
+using com.companyname.syddjurs;
+#endif
 
 namespace Syddjurs;
 
 public  partial class CustomShell : Shell
 {
-    //public static readonly BindableProperty IsAdministratorProperty =
-    //   BindableProperty.Create(nameof(IsAdministrator), typeof(bool), typeof(CustomShell), false, propertyChanged: OnIsAdminChanged);
-
-
-    //public bool IsAdministrator
-    //{
-    //    get => (bool)GetValue(IsAdministratorProperty);
-    //    set => SetValue(IsAdministratorProperty, value);
-    //}
-
+    
     public CustomShell()
     {
         InitializeComponent();
 
         Navigated += OnShellNavigated;
+
+
+//#if ANDROID
+//                    var activity = Platform.CurrentActivity as MainActivity;
+//                    bool isDark = RequestedTheme == AppTheme.Dark;
+//                    activity?.SetSystemBarColorsBasedOnTheme(isDark);
+
+//                    RequestedThemeChanged += (s, e) =>
+//                    {
+//                        var act = Platform.CurrentActivity as MainActivity;
+//                        act?.SetSystemBarColorsBasedOnTheme(e.RequestedTheme == AppTheme.Dark);
+//                    };
+//#endif
 
         // *********************** BindingContext = this;
     }
@@ -32,14 +38,5 @@ public  partial class CustomShell : Shell
         }
     }
 
-    //private static void OnIsAdminChanged(BindableObject bindable, object oldValue, object newValue)
-    //{
-    //    var customShell = (CustomShell)bindable;
-    //    bool isAdmininistrator = (bool)newValue;
-
-    //    var adminItem = customShell.Items.FirstOrDefault(i => i.Route == "items");
-
-    //    if (adminItem != null)
-    //        adminItem.IsVisible = isAdmininistrator;
 }
 

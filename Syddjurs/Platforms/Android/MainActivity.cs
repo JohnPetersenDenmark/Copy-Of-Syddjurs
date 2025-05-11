@@ -29,7 +29,15 @@ namespace com.companyname.syddjurs
             base.OnCreate(savedInstanceState);
 
             HandleSharedText(Intent);
-            // SetSystemBarColors("#8e1157");
+            SetSystemBarColorsBasedOnTheme();
+        }
+
+        public override void OnConfigurationChanged(Android.Content.Res.Configuration newConfig)
+        {
+            base.OnConfigurationChanged(newConfig);
+
+            // Theme may have changed; update bar colors
+            SetSystemBarColorsBasedOnTheme();
         }
 
         protected override void OnNewIntent(Intent? intent)
@@ -47,27 +55,27 @@ namespace com.companyname.syddjurs
             }
         }
 
-        public void SetSystemBarColorsBasedOnTheme(bool isDarkTheme)
+        private void SetSystemBarColorsBasedOnTheme()
         {
             var window = Window;
 
-            if (isDarkTheme)
+            bool isDarkTheme = (Resources.Configuration.UiMode & Android.Content.Res.UiMode.NightMask)
+                               == Android.Content.Res.UiMode.NightYes;
+
+            if (!isDarkTheme)
             {
                 window.SetStatusBarColor(Android.Graphics.Color.ParseColor("#8e1157"));
                 window.SetNavigationBarColor(Android.Graphics.Color.ParseColor("#8e1157"));
-
-                // Light icons for dark background
-                window.DecorView.SystemUiVisibility = 0;
+                window.DecorView.SystemUiVisibility = 0; // Light icons
             }
             else
             {
                 window.SetStatusBarColor(Android.Graphics.Color.White);
                 window.SetNavigationBarColor(Android.Graphics.Color.White);
 
-                // Dark icons for light background (Android 6.0+)
                 if (Build.VERSION.SdkInt >= BuildVersionCodes.M)
                 {
-                    window.DecorView.SystemUiVisibility = (StatusBarVisibility)SystemUiFlags.LightStatusBar;
+                    window.DecorView.SystemUiVisibility = (StatusBarVisibility)SystemUiFlags.LightStatusBar; // Dark icons
                 }
             }
         }
