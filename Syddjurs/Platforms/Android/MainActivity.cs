@@ -20,6 +20,8 @@ namespace com.companyname.syddjurs
                              | ConfigChanges.ScreenLayout
                              | ConfigChanges.SmallestScreenSize
                              | ConfigChanges.Density)]
+
+
     public class MainActivity : MauiAppCompatActivity
     {
         public static string? SharedText { get; private set; }
@@ -29,7 +31,7 @@ namespace com.companyname.syddjurs
             base.OnCreate(savedInstanceState);
 
             HandleSharedText(Intent);
-            SetSystemBarColorsBasedOnTheme();
+           
         }
 
         public override void OnConfigurationChanged(Android.Content.Res.Configuration newConfig)
@@ -40,18 +42,25 @@ namespace com.companyname.syddjurs
             SetSystemBarColorsBasedOnTheme();
         }
 
-        protected override void OnNewIntent(Intent? intent)
-        {
-            base.OnNewIntent(intent);
-            if (intent != null)
-                HandleSharedText(intent);
-        }
+   
 
         private void HandleSharedText(Intent intent)
         {
             if (intent.Action == Intent.ActionSend && intent.Type == "text/plain")
             {
                 SharedText = intent.GetStringExtra(Intent.ExtraText);
+
+
+                //Intent.cat
+                //var sendingPackage = CallingPackage;
+                //if (!string.IsNullOrEmpty(sendingPackage))
+                //{
+                //    var pm = PackageManager;
+                //    var appInfo = pm.GetApplicationInfo(sendingPackage, 0);
+                //    var appName = pm.GetApplicationLabel(appInfo);
+
+                  
+                //}
             }
         }
 

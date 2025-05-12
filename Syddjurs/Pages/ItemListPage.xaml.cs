@@ -65,59 +65,9 @@ public partial class ItemListPage : ContentPage, INotifyPropertyChanged
                 item.IsSelected = false;
             }
         }
-    //    {
-    //        if (stamp.Equals(SelectedItem))
-    //        {
-    //            stamp.IsSelected = true;
-    //        //    //stamp.SelectedColor = Color.FromArgb(AddressListViewSelectedItemColorHex);
-    //            stamp.SelectedBackgroundColor = _selectedCollectionViewItemBackgroundColor;
-    //        //    stamp.SelectedLabelTextColor = _selectedLabelTextColor;
-    //        }
-    //        else
-    //        {
-    //           stamp.IsSelected = false;
-    //        //    stamp.SelectedBackgroundColor = _unSelectedCollectionViewItemBackgroundColor;
-    //        //    stamp.SelectedLabelTextColor = _unSelectedLabelTextColor;
-    //        }
-
-            //    }
+   
     }
 
-
-
-    //private void OnItemSelected(object sender, SelectionChangedEventArgs e)
-    //{
-
-    //    SelectedItem = e.CurrentSelection.FirstOrDefault() as ItemInListDto;
-
-    //    var copyOfItems = new List<ItemInListDto>();
-    //    foreach (var stamp in Items)
-    //    {
-    //        if (stamp.Equals(SelectedItem))
-    //        {
-    //            stamp.IsSelected = true;
-    //        //    //stamp.SelectedColor = Color.FromArgb(AddressListViewSelectedItemColorHex);
-    //        //    stamp.SelectedBackgroundColor = _selectedCollectionViewItemBackgroundColor;
-    //        //    stamp.SelectedLabelTextColor = _selectedLabelTextColor;
-    //        }
-    //        else
-    //        {
-    //           stamp.IsSelected = false;
-    //        //    stamp.SelectedBackgroundColor = _unSelectedCollectionViewItemBackgroundColor;
-    //        //    stamp.SelectedLabelTextColor = _unSelectedLabelTextColor;
-    //        }
-
-    //    }
-    //}
-
-    //private void EditButton_BindingContextChanged(object sender, EventArgs e)
-    //{
-    //    if (sender is Button button)
-    //    {
-    //        button.Clicked -= OnEditClicked; // Prevent duplicate bindings
-    //        button.Clicked += OnEditClicked;
-    //    }
-    //}
 
     private void OnItemTapped(object sender, EventArgs e)
     {

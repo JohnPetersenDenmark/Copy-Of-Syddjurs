@@ -17,7 +17,7 @@ namespace Syddjurs
 
         protected override Window CreateWindow(IActivationState? activationState)
         {
-            return new Window(new CustomShell());            
+            return new Window(new CustomShell());              
         }
     }
 }

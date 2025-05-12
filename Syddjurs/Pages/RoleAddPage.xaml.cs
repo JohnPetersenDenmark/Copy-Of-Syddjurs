@@ -80,9 +80,7 @@ public partial class RoleAddPage : ContentPage , INotifyPropertyChanged
 
             if (response.IsSuccessStatusCode)
             {
-                await Application.Current.MainPage.DisplayAlert("Success", "Rollen er gemt", "OK");
-                //SelectedCategory.Category = CategoryEntryChangeText.Text;
-                //CategoryEntryChange.Text = CategoryEntryChangeText.Text;
+                await Application.Current.MainPage.DisplayAlert("Success", "Rollen er gemt", "OK");             
             }
             else
             {
@@ -120,9 +118,7 @@ public partial class RoleAddPage : ContentPage , INotifyPropertyChanged
 
             if (response.IsSuccessStatusCode)
             {
-                await Application.Current.MainPage.DisplayAlert("Success", "Rollen er gemt", "OK");
-                //SelectedCategory.Category = CategoryEntryChangeText.Text;
-                //CategoryEntryChange.Text = CategoryEntryChangeText.Text;
+                await Application.Current.MainPage.DisplayAlert("Success", "Rollen er gemt", "OK");          
             }
             else
             {

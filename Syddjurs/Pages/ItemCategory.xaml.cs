@@ -156,17 +156,9 @@ public partial class ItemCategory : ContentPage, INotifyPropertyChanged
             var categories = JsonSerializer.Deserialize<List<ItemCategoryDto>>(await response.Content.ReadAsStringAsync());
 
             
-
-            // Clear the collection and add the fetched data
-
-            //  var returnList = new List<StampCategoryDto>();
             CategoryList.Clear();
             foreach (var category in categories)
-            {
-                //imageUpload.IsSelected = false;
-                //imageUpload.SelectedBackgroundColor = _unSelectedCollectionViewItemBackgroundColor;
-                //imageUpload.SelectedLabelTextColor = _unSelectedLabelTextColor;
-                // CategoryList.Add(category);
+            {              
                 CategoryList.Add(category);
             }
 

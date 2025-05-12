@@ -98,8 +98,6 @@ public partial class LoanPage : ContentPage, IQueryAttributable
             {
                 Items.Add(item);
             }
-
-            //IsDropdownVisible = true;
         }
         catch (Exception ex)
         {
@@ -165,22 +163,7 @@ public partial class LoanPage : ContentPage, IQueryAttributable
         LoanItemList.Remove(SelectedLoanItem);
 
     }
-
-    //private void OnEntryNumberOfItemsChanged(object sender, TextChangedEventArgs e)
-    //{
-    //    var newText = e.NewTextValue;
-
-    //    // Do your validation here
-    //    if (string.IsNullOrWhiteSpace(newText))
-    //    {
-    //        // maybe show error or disable a button
-    //    }
-    //    else
-    //    {
-    //        // everything is good
-    //    }
-    //}
-
+  
     private async void SaveClicked(object sender, EventArgs e)
     {
 
@@ -279,8 +262,6 @@ public partial class LoanPage : ContentPage, IQueryAttributable
                 LoanItemList.Add(loanItemLineDto);
                              
             }
-
-            //IsDropdownVisible = true;
         }
         catch (Exception ex)
         {

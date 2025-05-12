@@ -282,16 +282,7 @@ public partial class ItemPage : ContentPage, IQueryAttributable, INotifyProperty
         ItemName.Text = "";
         ItemDescription.Text = "";
 
-        //if (itemDto.CategoryId != null && itemDto.CategoryId != 0)
-        //{
-        //    var itemCategoryDto = new ItemCategoryDto();
-
-        //    itemCategoryDto.Id = (int)itemDto.CategoryId;
-        //    itemCategoryDto.Category = itemDto.CategoryText;
-
-        //    SelectedCategory = itemCategoryDto;
-        //}
-
+    
         SelectedSex = ""; 
         NumberOfItemsEntry.Text = "0";
 
@@ -320,7 +311,7 @@ public partial class ItemPage : ContentPage, IQueryAttributable, INotifyProperty
         itemDto.Lendable = IsLendable ;
     }
 
-    //  public event PropertyChangedEventHandler PropertyChanged;
+   
 
     protected virtual void OnPropertyChanged(string propertyName)
     {
