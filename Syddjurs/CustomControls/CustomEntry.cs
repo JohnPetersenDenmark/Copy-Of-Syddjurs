@@ -28,7 +28,7 @@ namespace Syddjurs.CustomControls
             BindableProperty.Create(
             propertyName: nameof(UnderlineColor),
             returnType: typeof(Color),
-            declaringType: typeof(CustomShell),
+            declaringType: typeof(CustomEntry),
             defaultValue: Colors.Black,  // Default color
             defaultBindingMode: BindingMode.TwoWay);
 

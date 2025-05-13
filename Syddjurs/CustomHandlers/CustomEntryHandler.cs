@@ -45,32 +45,32 @@ namespace Syddjurs.CustomHandlers
 #if ANDROID
             InputTypes inputType;
 
-            if (handler.PlatformView is AppCompatEditText editText)
-            {
-                switch (entry.CustomInputType)
-                {
-                    case CustomKeyboardInputType.Email:
-                        inputType = InputTypes.ClassText | InputTypes.TextVariationEmailAddress;
-                        break;
-                    case CustomKeyboardInputType.Numeric:
-                        inputType = InputTypes.ClassNumber;
-                        break;
-                    case CustomKeyboardInputType.Normal:
-                        inputType = InputTypes.ClassText | InputTypes.TextFlagMultiLine | InputTypes.TextVariationNormal;
-                        break;
-                    default:
-                        inputType = InputTypes.ClassText  | InputTypes.TextFlagMultiLine | InputTypes.TextVariationNormal;
-                                    //| InputTypes.TextVariationNormal;
-                                    //| InputTypes.TextFlagCapSentences
-                                    //| InputTypes.TextFlagMultiLine
-                                    //| InputTypes.TextVariationNormal;
-                        break;
-                }
+            //if (handler.PlatformView is AppCompatEditText editText)
+            //{
+            //    switch (entry.CustomInputType)
+            //    {
+            //        case CustomKeyboardInputType.Email:
+            //            inputType = InputTypes.ClassText | InputTypes.TextVariationEmailAddress;
+            //            break;
+            //        case CustomKeyboardInputType.Numeric:
+            //            inputType = InputTypes.ClassNumber;
+            //            break;
+            //        case CustomKeyboardInputType.Normal:
+            //            inputType = InputTypes.ClassText | InputTypes.TextFlagMultiLine | InputTypes.TextVariationNormal;
+            //            break;
+            //        default:
+            //            inputType = InputTypes.ClassText  | InputTypes.TextFlagMultiLine | InputTypes.TextVariationNormal;
+            //                        //| InputTypes.TextVariationNormal;
+            //                        //| InputTypes.TextFlagCapSentences
+            //                        //| InputTypes.TextFlagMultiLine
+            //                        //| InputTypes.TextVariationNormal;
+            //            break;
+            //    }
 
-                editText.SetRawInputType(inputType);
-                editText.InputType = inputType;
-                editText.ImeOptions = ImeAction.Done;
-            }
+            //    editText.SetRawInputType(inputType);
+            //    editText.InputType = inputType;
+            //    editText.ImeOptions = ImeAction.Done;
+            //}
 #endif
         }
         

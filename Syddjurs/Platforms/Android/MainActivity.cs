@@ -24,7 +24,8 @@ namespace com.companyname.syddjurs
 
     public class MainActivity : MauiAppCompatActivity
     {
-        public static string? SharedText { get; private set; }
+        public static string? SharedText { get;  set; }
+        public static bool IsSharedTextHandled { get; set; }
 
         protected override void OnCreate(Bundle? savedInstanceState)
         {
@@ -50,6 +51,7 @@ namespace com.companyname.syddjurs
             {
                 SharedText = intent.GetStringExtra(Intent.ExtraText);
 
+                IsSharedTextHandled = false;
 
                 //Intent.cat
                 //var sendingPackage = CallingPackage;
@@ -59,8 +61,12 @@ namespace com.companyname.syddjurs
                 //    var appInfo = pm.GetApplicationInfo(sendingPackage, 0);
                 //    var appName = pm.GetApplicationLabel(appInfo);
 
-                  
+
                 //}
+            }
+            else
+            {
+                IsSharedTextHandled = false;
             }
         }
 
