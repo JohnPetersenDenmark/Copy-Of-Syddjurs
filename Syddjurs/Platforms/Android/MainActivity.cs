@@ -35,6 +35,14 @@ namespace com.companyname.syddjurs
            
         }
 
+        protected override void OnNewIntent(Intent intent)
+        {
+            base.OnNewIntent(intent);
+
+            // Handle shared text again
+            HandleSharedText(intent);
+        }
+
         public override void OnConfigurationChanged(Android.Content.Res.Configuration newConfig)
         {
             base.OnConfigurationChanged(newConfig);

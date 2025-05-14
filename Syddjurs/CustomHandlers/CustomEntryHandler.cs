@@ -146,13 +146,24 @@ namespace Syddjurs.CustomHandlers
                 editText.InputType = Android.Text.InputTypes.ClassText | Android.Text.InputTypes.TextFlagCapSentences;
 
                 editText.FocusChange += OnFocusChanged;
+
+                nativeView.LongClickable = true;
+
+                nativeView.LongClick += NativeView_LongClick;
+            }                     
+        }
+
+        private void NativeView_LongClick(object? sender, LongClickEventArgs e)
+        {
+            if (VirtualView is CustomEntry customEntry)
+            {
+                customEntry.OnLongPressed();
             }
-
-          
-
-           
         }
 #endif
+
+
+
 #if ANDROID
         private void OnFocusChanged(object sender, Android.Views.View.FocusChangeEventArgs e)
         {
@@ -204,6 +215,7 @@ namespace Syddjurs.CustomHandlers
         protected override void DisconnectHandler(AppCompatEditText nativeView)
         {           
             nativeView.FocusChange -= OnFocusChanged;
+            nativeView.LongClick -= NativeView_LongClick;
 
             base.DisconnectHandler(nativeView);
         }

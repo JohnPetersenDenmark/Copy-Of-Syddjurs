@@ -5,6 +5,7 @@ using System.ComponentModel;
 using Microsoft.Maui.Storage;
 using System.Net.Http.Json;
 using Syddjurs.Utilities;
+using Syddjurs.CustomControls;
 
 namespace Syddjurs.Pages;
 
@@ -61,15 +62,45 @@ public partial class LoginPage : ContentPage, INotifyPropertyChanged
         InitializeComponent();
         
         BindingContext = this;
+
+
+        LoginUserName.LongPressed += async (s, e) =>
+        {
+            var entry = (CustomEntry)s;
+            var text = entry.Text;
+
+            var action = await Application.Current.MainPage.DisplayActionSheet(
+                "Vælg handling", "Annuller", null, "Kopier", "Del");
+
+            if (action == "Kopier")
+            {
+                await Clipboard.SetTextAsync(text);
+            }
+            else if (action == "Del")
+            {
+                await Share.RequestAsync(new ShareTextRequest
+                {
+                    Text = text,
+                    Title = "Del tekst"
+                });
+            }
+        };
     }
 
 
     protected override void OnAppearing()
     {
         base.OnAppearing();
-        UserName = SecureStorage.GetAsync("userLogin").Result;    
+        UserName = SecureStorage.GetAsync("userLogin").Result;
+
+       // var mainPageWindow = Application.Current.Windows[0];
+       //// var x = Application.Current.MainPage;
+       // var currentPage = mainPageWindow.Page;
+
+       // var selectedAction = currentPage.DisplayActionSheet("Vælg handling", "Annuller", null, "Kopier", "Del").Result;
+
     }
-    
+
 
     protected override void OnDisappearing()
     {

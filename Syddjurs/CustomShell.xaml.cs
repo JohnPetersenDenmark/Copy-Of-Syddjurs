@@ -11,6 +11,8 @@ public  partial class CustomShell : Shell
     {
         InitializeComponent();
 
+        
+
         Navigated += OnShellNavigated;
 
 

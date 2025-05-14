@@ -1,9 +1,5 @@
-﻿using Syddjurs.CustomHandlers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
+
 
 namespace Syddjurs.CustomControls
 {
@@ -17,12 +13,21 @@ namespace Syddjurs.CustomControls
     public class CustomEntry : Entry
     {
 
-       // public string IsCustomEntry = "yes";
+        // public string IsCustomEntry = "yes";
 
         public CustomEntry()
-        {          
+        {
            
         }
+
+        public event EventHandler? LongPressed;
+
+        public void OnLongPressed()
+        {
+            LongPressed?.Invoke(this, EventArgs.Empty);
+        }
+
+     
 
         public static readonly BindableProperty UnderlineColorProperty =
             BindableProperty.Create(
