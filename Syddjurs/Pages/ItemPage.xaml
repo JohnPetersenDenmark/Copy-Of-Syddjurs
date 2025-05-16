@@ -17,7 +17,9 @@
                     <controls:CustomEntry x:Name="ItemName"                          
                             HeightRequest="50"
                             BackgroundColor="{StaticResource White}"
+                                           Placeholder="Navn"
                             TextColor="Black"
+                                          EntryId="ItemPageEntryItemName"
                             
                             UnderlineColor="Transparent" />
                     </Border>
@@ -31,6 +33,33 @@
                         HorizontalOptions="Start"
                         VerticalOptions="Start" />
                 </Grid>
+
+
+
+
+                <Grid HeightRequest="80">
+                    <Border Stroke="{StaticResource Primary}" StrokeThickness="1" Margin="10,10,10,20" >
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="5" />
+                        </Border.StrokeShape>
+                        <Entry x:Name="TestEntry"                          
+              HeightRequest="50"
+              BackgroundColor="{StaticResource White}"
+              TextColor="Black"
+                         
+                                               Placeholder="Et testfelt basen on Entry"></Entry>
+              
+           
+                    </Border>
+
+                </Grid>
+
+
+
+
+
+
+
                 <Grid>
                     <Border Stroke="{StaticResource Primary}" StrokeThickness="1" Margin="10,10,10,20" >
                     <Border.StrokeShape>

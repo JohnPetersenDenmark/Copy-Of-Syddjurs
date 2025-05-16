@@ -27,7 +27,14 @@ namespace Syddjurs.CustomControls
             LongPressed?.Invoke(this, EventArgs.Empty);
         }
 
-     
+        public static readonly BindableProperty EntryIdProperty =
+       BindableProperty.Create(nameof(EntryId), typeof(string), typeof(CustomEntry), null);
+
+        public string EntryId
+        {
+            get => (string)GetValue(EntryIdProperty);
+            set => SetValue(EntryIdProperty, value);
+        }
 
         public static readonly BindableProperty UnderlineColorProperty =
             BindableProperty.Create(

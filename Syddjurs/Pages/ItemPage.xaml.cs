@@ -3,8 +3,10 @@ using System.ComponentModel;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using Syddjurs.CustomControls;
 using Syddjurs.Models;
 using Syddjurs.Utilities;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Syddjurs.Pages;
 
@@ -13,6 +15,9 @@ public partial class ItemPage : ContentPage, IQueryAttributable, INotifyProperty
     public event PropertyChangedEventHandler PropertyChanged;
 
     private readonly HttpClient _httpClient;
+
+    string _sharedtext;
+    Entry _targetEntry ;
 
     private ItemDto _selectedItem;
     private int _selectedItemId;
@@ -143,6 +148,21 @@ public partial class ItemPage : ContentPage, IQueryAttributable, INotifyProperty
     protected override void OnAppearing()
     {
         base.OnAppearing();
+
+      
+        if (_targetEntry != null)
+        {
+
+            //if (TestEntry.EntryId == _targetEntry.EntryId)
+            //{
+            _targetEntry.Text = _sharedtext;
+            _targetEntry.Focus();   
+            //}
+
+            //_targetEntry.Text = _sharedtext;
+            //_targetEntry.Focus();
+        }
+
         IsDropdownVisible = false;
         IsSexDropdownVisible = false;
 
@@ -178,11 +198,11 @@ public partial class ItemPage : ContentPage, IQueryAttributable, INotifyProperty
                      
             if (response.IsSuccessStatusCode)
             {
-                await Application.Current.MainPage.DisplayAlert("Success", "Kategorien er gemt", "OK");
+                await Microsoft.Maui.Controls.Application.Current.MainPage.DisplayAlert("Success", "Kategorien er gemt", "OK");
             }
             else
             {
-                await Application.Current.MainPage.DisplayAlert("Error", "Kategorien blev ikke gemt", "OK");
+                await Microsoft.Maui.Controls.Application.Current.MainPage.DisplayAlert("Error", "Kategorien blev ikke gemt", "OK");
             }
         }
 
@@ -322,23 +342,53 @@ public partial class ItemPage : ContentPage, IQueryAttributable, INotifyProperty
     {
         if (query.Count > 0)
         {
-            var item = query["ItemToEdit"] as ItemInListDto;
-            if (item != null)
-            {
+            //var item = query["ItemToEdit"] as ItemInListDto;
+            //if (item != null)
+            //{
               
-                this._selectedItemId = item.Id;
+            //    this._selectedItemId = item.Id;
+            //}
+            //else
+            //{
+            //    this._selectedItem = null;
+            //    this._selectedItemId = 0;
+            //}
+
+            if (query.TryGetValue("ReceivedSharedText", out var sharedText) && query.TryGetValue("TargetEntry",  out var targetEntry ))
+                {
+                     _sharedtext = sharedText?.ToString();
+                _targetEntry = targetEntry as Entry;
+
+                // var destinationEntry = FindCustomEntryById(entry);
+
+                
             }
-            else
-            {
-                this._selectedItem = null;
-                this._selectedItemId = 0;
             }
-        }
         else
         {
             this._selectedItem = null;
             this._selectedItemId = 0;
         }
+    }
+
+    private CustomEntry? FindCustomEntryById(CustomEntry customEntry)
+    {
+        if (customEntry == null)
+            return null;
+
+        foreach (var descendant in this.Descendants())
+        {
+            if (descendant is CustomEntry ce)
+            {
+                 if ( ce.Equals(customEntry))
+                {
+                    return ce;  
+                }
+            }
+                
+        }
+
+        return null;
     }
 
     private async Task FetchItemById(int id)

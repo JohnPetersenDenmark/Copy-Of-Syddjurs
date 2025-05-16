@@ -18,6 +18,72 @@
          >
 
             </Entry>
-      
+
+        <CollectionView ItemsSource="{Binding AvailablePages}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout>
+                        <!-- Page Header -->
+                        <Label Text="{Binding PageName}" 
+                       FontAttributes="Bold" 
+                       FontSize="18" 
+                       Padding="10" />
+
+                        <!-- Entries for that Page -->
+                        <CollectionView ItemsSource="{Binding Entries}" 
+                                SelectionMode="Single"
+                                 SelectedItem="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.SelectedEntry, Mode=TwoWay}">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <Frame Padding="10" Margin="5" BackgroundColor="#f0f0f0">
+                                        <Label Text="{Binding EntryName}" />
+                                    </Frame>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <!--<CollectionView x:Name="PageEntryList"
+                ItemsSource="{Binding AvailablePages}"
+                IsGrouped="True">
+            <CollectionView.GroupHeaderTemplate>
+                <DataTemplate>
+                    <Label Text="{Binding PageName}"
+                   FontAttributes="Bold"
+                   FontSize="18"
+                   Padding="10,5" />
+                </DataTemplate>
+            </CollectionView.GroupHeaderTemplate>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout Padding="5,0">
+                        <Label Text="{Binding EntryId}" FontSize="14"/>
+                      
+                      
+                        BindingContext="{Binding .}" />
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>-->
+
+        <!--<CollectionView ItemsSource="{Binding AvailablePages}"
+                    SelectionMode="Single"
+                    SelectedItem="{Binding SelectedPage}">
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout Padding="10">
+                        <Label Text="{Binding PageName}" FontSize="18"/>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>-->
+
+     
+
     </VerticalStackLayout>
 </ContentPage>
