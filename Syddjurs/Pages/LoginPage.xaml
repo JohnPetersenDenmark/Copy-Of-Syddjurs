@@ -13,7 +13,7 @@
             <controls:CustomEntry x:Name="LoginUserName" 
                                   Text="{Binding UserName}" 
                                   Placeholder="Brugernavn" 
-                                  CustomInputType="Normal"
+                                 
                                   Keyboard="Text"
                                   BackgroundColor="{StaticResource White}"
                                   TextColor="Black" UnderlineColor="Transparent" 

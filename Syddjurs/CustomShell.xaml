@@ -35,6 +35,13 @@
         </ShellContent>
     </FlyoutItem>
 
+    <FlyoutItem Title="Test page"  Icon="settings.png" Route="testpage">
+
+        <ShellContent Title="Test page"  Icon="settings.png"                     
+         ContentTemplate="{DataTemplate UtilPages:TestPage}" >
+        </ShellContent>
+    </FlyoutItem>
+
     <!--<FlyoutItem Title="Indstillinger"  Icon="settings.png" Route="settings">
 
         <ShellContent Title="Indstillinger"  Icon="settings.png"                     

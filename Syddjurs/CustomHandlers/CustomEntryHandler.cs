@@ -36,8 +36,8 @@ namespace Syddjurs.CustomHandlers
     {
         public static IPropertyMapper<CustomEntry, CustomEntryHandler> MyMapper = new PropertyMapper<CustomEntry, CustomEntryHandler>(EntryHandler.Mapper)
         {
-            [nameof(CustomEntry.UnderlineColor)] = MapUnderlineColor,
-            [nameof(CustomEntry.CustomInputType)] = MapKeyboardInputType
+            //[nameof(CustomEntry.UnderlineColor)] = MapUnderlineColor,
+            //[nameof(CustomEntry.CustomInputType)] = MapKeyboardInputType
         };
 
         private static void MapKeyboardInputType(CustomEntryHandler handler, CustomEntry entry)
@@ -81,56 +81,56 @@ namespace Syddjurs.CustomHandlers
         }
 
 
-        private static void MapUnderlineColor(CustomEntryHandler handler, CustomEntry entry)
-        {
-#if ANDROID
-            if (handler.PlatformView is AndroidX.AppCompat.Widget.AppCompatEditText appCompatEditText)
-            {
-                // Post to ensure changes are done on the UI thread
-                appCompatEditText.Post(() =>
-                {
-                    List<Drawable> layerList = new List<Drawable>();
+//        private static void MapUnderlineColor(CustomEntryHandler handler, CustomEntry entry)
+//        {
+//#if ANDROID
+//            if (handler.PlatformView is AndroidX.AppCompat.Widget.AppCompatEditText appCompatEditText)
+//            {
+//                // Post to ensure changes are done on the UI thread
+//                appCompatEditText.Post(() =>
+//                {
+//                    List<Drawable> layerList = new List<Drawable>();
 
-                    // 1. Save the existing background
-                    var existingBackground = appCompatEditText.Background;
+//                    // 1. Save the existing background
+//                    var existingBackground = appCompatEditText.Background;
 
-                    if (existingBackground is Android.Graphics.Drawables.LayerDrawable layerDrawable)
-                    {
-                        for (int i = 0; i < layerDrawable.NumberOfLayers; i++)
-                        {
-                            var layer = layerDrawable.GetDrawable(i);
-                            if (layer is not InsetDrawable underLineDrawable)
-                            {
-                                layerList.Add(layer);
-                            }
-                        }
-                    }
+//                    if (existingBackground is Android.Graphics.Drawables.LayerDrawable layerDrawable)
+//                    {
+//                        for (int i = 0; i < layerDrawable.NumberOfLayers; i++)
+//                        {
+//                            var layer = layerDrawable.GetDrawable(i);
+//                            if (layer is not InsetDrawable underLineDrawable)
+//                            {
+//                                layerList.Add(layer);
+//                            }
+//                        }
+//                    }
 
                  
 
-                    // 2. Create a new drawable for the underline
-                    var underlineDrawable = new UnderlineDrawable(entry.UnderlineColor.ToPlatform());
+//                    // 2. Create a new drawable for the underline
+//                    var underlineDrawable = new UnderlineDrawable(entry.UnderlineColor.ToPlatform());
                     
 
-                    // 3. Set bounds for the underline drawable (width, height should match the EditText)
-                    underlineDrawable.SetBounds(0, 0, appCompatEditText.Width, appCompatEditText.Height);
+//                    // 3. Set bounds for the underline drawable (width, height should match the EditText)
+//                    underlineDrawable.SetBounds(0, 0, appCompatEditText.Width, appCompatEditText.Height);
 
 
-                    layerList.Add(underlineDrawable);
+//                    layerList.Add(underlineDrawable);
 
                    
-                    var newBackGround = new Android.Graphics.Drawables.LayerDrawable(layerList.ToArray());
+//                    var newBackGround = new Android.Graphics.Drawables.LayerDrawable(layerList.ToArray());
 
-                    // 5. Apply the layered drawable as the new background
-                    appCompatEditText.SetBackground(newBackGround);
+//                    // 5. Apply the layered drawable as the new background
+//                    appCompatEditText.SetBackground(newBackGround);
                   
 
-                    // Optionally, invalidate the view to ensure it gets redrawn immediately
-                    appCompatEditText.Invalidate();
-                });
-            }
-#endif
-        }
+//                    // Optionally, invalidate the view to ensure it gets redrawn immediately
+//                    appCompatEditText.Invalidate();
+//                });
+//            }
+//#endif
+//        }
 
 
 
@@ -167,45 +167,45 @@ namespace Syddjurs.CustomHandlers
 #if ANDROID
         private void OnFocusChanged(object sender, Android.Views.View.FocusChangeEventArgs e)
         {
-            List<Drawable> layerList = new List<Drawable>();
+            //List<Drawable> layerList = new List<Drawable>();
 
-            var customEntry = this.VirtualView as CustomEntry;
-            var focusedUnderlineColor = customEntry.UnderlineColor;
-            var unFocusedUnderlineColor = customEntry.UnderlineColor;
+            //var customEntry = this.VirtualView as CustomEntry;
+            //var focusedUnderlineColor = customEntry.UnderlineColor;
+            //var unFocusedUnderlineColor = customEntry.UnderlineColor;
 
-            if (sender is AndroidX.AppCompat.Widget.AppCompatEditText editText)
-            {
-                var existingBackground = editText.Background;
+            //if (sender is AndroidX.AppCompat.Widget.AppCompatEditText editText)
+            //{
+            //    var existingBackground = editText.Background;
 
-                if (existingBackground is Android.Graphics.Drawables.LayerDrawable layerDrawable)
-                {
-                    for (int i = 0; i < layerDrawable.NumberOfLayers; i++)
-                    {
-                        var layer = layerDrawable.GetDrawable(i);
-                        if ( layer is not UnderlineDrawable underLineDrawable)
-                        {
-                            layerList.Add(layer);
-                        }                       
-                    }
-                }
+            //    if (existingBackground is Android.Graphics.Drawables.LayerDrawable layerDrawable)
+            //    {
+            //        for (int i = 0; i < layerDrawable.NumberOfLayers; i++)
+            //        {
+            //            var layer = layerDrawable.GetDrawable(i);
+            //            if ( layer is not UnderlineDrawable underLineDrawable)
+            //            {
+            //                layerList.Add(layer);
+            //            }                       
+            //        }
+            //    }
 
-                var currentUnderlineColor = e.HasFocus ? focusedUnderlineColor : unFocusedUnderlineColor;
+            //    var currentUnderlineColor = e.HasFocus ? focusedUnderlineColor : unFocusedUnderlineColor;
 
-                var underlineDrawable = new UnderlineDrawable( currentUnderlineColor.ToPlatform());
+            //    var underlineDrawable = new UnderlineDrawable( currentUnderlineColor.ToPlatform());
 
-                underlineDrawable.SetBounds(0, 0, editText.Width, editText.Height);
+            //    underlineDrawable.SetBounds(0, 0, editText.Width, editText.Height);
 
-                layerList.Add(underlineDrawable);
+            //    layerList.Add(underlineDrawable);
 
-                var newBackGround = new Android.Graphics.Drawables.LayerDrawable(layerList.ToArray());
+            //    var newBackGround = new Android.Graphics.Drawables.LayerDrawable(layerList.ToArray());
 
-                // Post to ensure layout is ready
-                editText.Post(() =>
-                {
-                    editText.SetBackground(newBackGround);
-                    editText.SetCursorVisible(true);
-                });
-            }         
+            //    // Post to ensure layout is ready
+            //    editText.Post(() =>
+            //    {
+            //        editText.SetBackground(newBackGround);
+            //        editText.SetCursorVisible(true);
+            //    });
+            //}         
         }
 #endif
 

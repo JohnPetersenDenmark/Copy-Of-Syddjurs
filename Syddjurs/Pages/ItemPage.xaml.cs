@@ -22,6 +22,19 @@ public partial class ItemPage : ContentPage, IQueryAttributable, INotifyProperty
     private ItemDto _selectedItem;
     private int _selectedItemId;
 
+    private string _testEntryText;
+    public string TestEntryText
+    {
+        get => _testEntryText;
+        set
+        {
+           
+                _testEntryText = value;
+                OnPropertyChanged(nameof(TestEntryText));
+            
+        }
+    }
+
     private bool _isDropdownVisible = true;
     public bool IsDropdownVisible
     {
@@ -116,7 +129,7 @@ public partial class ItemPage : ContentPage, IQueryAttributable, INotifyProperty
 
     public ItemPage()
 	{
-		InitializeComponent();
+		
 
         _httpClient = new HttpClient();
 
@@ -124,6 +137,8 @@ public partial class ItemPage : ContentPage, IQueryAttributable, INotifyProperty
        
 
         BindingContext = this;
+
+        InitializeComponent();
 
         Loaded += OnPageLoaded;
     }
@@ -149,19 +164,25 @@ public partial class ItemPage : ContentPage, IQueryAttributable, INotifyProperty
     {
         base.OnAppearing();
 
-      
-        if (_targetEntry != null)
-        {
+        //Dispatcher.Dispatch(() =>
+        //{
+        //    _targetEntry.Text = _sharedtext;
+        //    _targetEntry.Focus();
+        //});
 
-            //if (TestEntry.EntryId == _targetEntry.EntryId)
-            //{
-            _targetEntry.Text = _sharedtext;
-            _targetEntry.Focus();   
-            //}
+        //if (_targetEntry != null)
+        //{
 
-            //_targetEntry.Text = _sharedtext;
-            //_targetEntry.Focus();
-        }
+        //    //if (TestEntry.EntryId == _targetEntry.EntryId)
+        //    //{
+        //TestEntryText = _sharedtext;
+       // _targetEntry.Text = _sharedtext;
+        //_targetEntry.Focus();
+        //    //}
+
+        //    //_targetEntry.Text = _sharedtext;
+        //    //_targetEntry.Focus();
+        //}
 
         IsDropdownVisible = false;
         IsSexDropdownVisible = false;

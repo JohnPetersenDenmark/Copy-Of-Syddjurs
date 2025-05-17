@@ -16,6 +16,7 @@ namespace Syddjurs
             Routing.RegisterRoute(nameof(ItemPage), typeof(ItemPage));
             Routing.RegisterRoute(nameof(LoanPage), typeof(LoanPage));
             Routing.RegisterRoute(nameof(LoginPage), typeof(LoginPage));
+            Routing.RegisterRoute(nameof(TestPage), typeof(TestPage));
             Routing.RegisterRoute("sharetext", typeof(ShareTextDistributePage));
         }
 

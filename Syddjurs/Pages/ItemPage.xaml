@@ -14,12 +14,13 @@
                         <Border.StrokeShape>
                         <RoundRectangle CornerRadius="5" />
                         </Border.StrokeShape>
-                    <controls:CustomEntry x:Name="ItemName"                          
+                    <controls:CustomEntry x:Name="ItemName"     
+                                           Text="{Binding TestEntryText}"
                             HeightRequest="50"
                             BackgroundColor="{StaticResource White}"
                                            Placeholder="Navn"
                             TextColor="Black"
-                                          EntryId="ItemPageEntryItemName"
+                                         
                             
                             UnderlineColor="Transparent" />
                     </Border>
@@ -42,10 +43,11 @@
                         <Border.StrokeShape>
                             <RoundRectangle CornerRadius="5" />
                         </Border.StrokeShape>
-                        <Entry x:Name="TestEntry"                          
-              HeightRequest="50"
-              BackgroundColor="{StaticResource White}"
-              TextColor="Black"
+                        <Entry x:Name="TestEntry" 
+                              
+                                HeightRequest="50"
+                                BackgroundColor="{StaticResource White}"
+                                TextColor="Black"
                          
                                                Placeholder="Et testfelt basen on Entry"></Entry>
               
@@ -286,7 +288,7 @@
                     </Border.StrokeShape>
                     <controls:CustomEntry x:Name="ColorEntry"                        
                             WidthRequest="200"
-                                           CustomInputType="Normal"
+                                          
                          BackgroundColor="{StaticResource White}"
                          HorizontalOptions="Start"
                          TextColor="Black"

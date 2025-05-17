@@ -17,7 +17,7 @@ namespace Syddjurs.CustomControls
 
         public CustomEntry()
         {
-           
+
         }
 
         public event EventHandler? LongPressed;
@@ -27,14 +27,28 @@ namespace Syddjurs.CustomControls
             LongPressed?.Invoke(this, EventArgs.Empty);
         }
 
-        public static readonly BindableProperty EntryIdProperty =
-       BindableProperty.Create(nameof(EntryId), typeof(string), typeof(CustomEntry), null);
+        //    public static readonly BindableProperty EntryIdProperty =
+        //   BindableProperty.Create(nameof(EntryId), typeof(string), typeof(CustomEntry), null);
 
-        public string EntryId
+        //    public string EntryId
+        //    {
+        //        get => (string)GetValue(EntryIdProperty);
+        //        set => SetValue(EntryIdProperty, value);
+        //    }
+
+        public static readonly BindableProperty BindingKeyProperty =
+     BindableProperty.Create(
+         nameof(BindingKey),
+         typeof(string),
+         typeof(CustomEntry),
+         default(string));
+
+        public string BindingKey
         {
-            get => (string)GetValue(EntryIdProperty);
-            set => SetValue(EntryIdProperty, value);
+            get => (string)GetValue(BindingKeyProperty);
+            set => SetValue(BindingKeyProperty, value);
         }
+
 
         public static readonly BindableProperty UnderlineColorProperty =
             BindableProperty.Create(
@@ -51,17 +65,18 @@ namespace Syddjurs.CustomControls
             set => SetValue(UnderlineColorProperty, value);
         }
 
-        public static readonly BindableProperty CustomInputTypeProperty =
-    BindableProperty.Create(
-        nameof(CustomInputType),
-        typeof(CustomKeyboardInputType),
-        typeof(CustomEntry),
-        CustomKeyboardInputType.Normal);
+        //    public static readonly BindableProperty CustomInputTypeProperty =
+        //BindableProperty.Create(
+        //    nameof(CustomInputType),
+        //    typeof(CustomKeyboardInputType),
+        //    typeof(CustomEntry),
+        //    CustomKeyboardInputType.Normal);
 
-        public CustomKeyboardInputType CustomInputType
-        {
-            get => (CustomKeyboardInputType)GetValue(CustomInputTypeProperty);
-            set => SetValue(CustomInputTypeProperty, value);
-        }
+        //    public CustomKeyboardInputType CustomInputType
+        //    {
+        //        get => (CustomKeyboardInputType)GetValue(CustomInputTypeProperty);
+        //        set => SetValue(CustomInputTypeProperty, value);
+        //    }
+        //}
     }
 }

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:controls="clr-namespace:Syddjurs.CustomControls"
              x:Class="Syddjurs.Pages.TestPage"
              Title="TestPage">
     <VerticalStackLayout>
@@ -16,11 +17,15 @@
             StrokeShape="RoundRectangle 8"
             BackgroundColor="White"
             Padding="10">
+                
+                
                 <Entry x:Name="MyEntry"
-               Placeholder="Type here"
+               Placeholder="Type here in Entry"
+                       Text="{Binding TestEntryText}"
                       
                Margin="0,0,0,0" />
             </Border>
+            
 
             <!-- Label positioned to sit on top stroke -->
             <Label Text="Username"
@@ -32,6 +37,35 @@
            HorizontalOptions="Start"
            VerticalOptions="Start" />
         </Grid>
+
+        <Grid Padding="20">
+            <!-- Border and content -->
+            <Border Stroke="Gray"
+     StrokeThickness="1"
+     StrokeShape="RoundRectangle 8"
+     BackgroundColor="White"
+     Padding="10">
+                <controls:CustomEntry x:Name="MyCustomEntry"
+                                       Text="{Binding TestCustomEntryText}"
+                                     BindingKey="TestCustomEntryText"
+        Placeholder="Type here in CustomEntry"
+               
+        Margin="0,0,0,0" />
+            </Border>
+
+           
+            <!-- Label positioned to sit on top stroke -->
+            <Label Text="{Binding TestCustomEntryText}"
+    FontSize="14"
+    BackgroundColor="White"
+    TextColor="Red"
+    Padding="4,0"
+    Margin="25,-7,0,0"
+    HorizontalOptions="Start"
+    VerticalOptions="Start" />
+        </Grid>
+
+
 
     </VerticalStackLayout>
 </ContentPage>
