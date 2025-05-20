@@ -120,10 +120,10 @@ public partial class ShareTextDistributePage : ContentPage, IQueryAttributable, 
 
             string route = targetPage.GetType().Name;
 
-            var navParams = new Dictionary<string, object>
+            var navParams = new Dictionary<string, Object>
                 {
                     { "ReceivedSharedText", ShareText },
-                    { "TargetEntry", selectedEntry.EntryControl } // Pass target entry
+                    { "TargetEntryId", entryInfo.EntryId } // Pass target entry
                 };
 
             await Shell.Current.GoToAsync(route, navParams);
@@ -155,6 +155,7 @@ public partial class ShareTextDistributePage : ContentPage, IQueryAttributable, 
                              {
                                  //EntryId = string.IsNullOrEmpty(e.EntryId) ? "(no id)" : e.EntryId,
                                  EntryControl = e,
+                                 EntryId = CustomEntry.SharedTextId,
                                  EntryName = e.Placeholder
                              })
                              .ToList();

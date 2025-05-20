@@ -11,6 +11,6 @@ namespace Syddjurs.Models
     {
         public string EntryId { get; set; } = "";
         public string EntryName { get; set; } = "";
-        public Entry EntryControl { get; set; }
+        public CustomEntry EntryControl { get; set; }
     }
 }

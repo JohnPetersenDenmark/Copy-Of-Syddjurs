@@ -13,15 +13,43 @@
         <Grid Padding="20">
             <!-- Border and content -->
             <Border Stroke="Gray"
+    StrokeThickness="1"
+    StrokeShape="RoundRectangle 8"
+    BackgroundColor="White"
+    Padding="10">
+
+
+                <Entry x:Name="MyEntry"
+       Placeholder="Type here in Entry"
+               Text="{Binding TestEntryText}"
+              
+       Margin="0,0,0,0" />
+            </Border>
+
+
+            <!-- Label positioned to sit on top stroke -->
+            <Label Text="Username"
+   FontSize="14"
+   BackgroundColor="White"
+   TextColor="Red"
+   Padding="4,0"
+   Margin="25,-7,0,0"
+   HorizontalOptions="Start"
+   VerticalOptions="Start" />
+        </Grid>
+
+
+        <Grid Padding="20">
+            <!-- Border and content -->
+            <Border Stroke="Gray"
             StrokeThickness="1"
             StrokeShape="RoundRectangle 8"
             BackgroundColor="White"
             Padding="10">
                 
                 
-                <Entry x:Name="MyEntry"
-               Placeholder="Type here in Entry"
-                       Text="{Binding TestEntryText}"
+                <Entry x:Name="MyEntryNoBinding"
+               Placeholder="Type here in Entry no binding"                     
                       
                Margin="0,0,0,0" />
             </Border>
@@ -37,6 +65,8 @@
            HorizontalOptions="Start"
            VerticalOptions="Start" />
         </Grid>
+        
+        
 
         <Grid Padding="20">
             <!-- Border and content -->
@@ -45,9 +75,10 @@
      StrokeShape="RoundRectangle 8"
      BackgroundColor="White"
      Padding="10">
-                <controls:CustomEntry x:Name="MyCustomEntry"
+                <controls:CustomEntry ReceivesSharedText="True"  x:Name="MyCustomEntry"
                                        Text="{Binding TestCustomEntryText}"
-                                     BindingKey="TestCustomEntryText"
+                                      TestFordevelopment ="MyCustomEntry"
+                                    
         Placeholder="Type here in CustomEntry"
                
         Margin="0,0,0,0" />
@@ -55,7 +86,7 @@
 
            
             <!-- Label positioned to sit on top stroke -->
-            <Label Text="{Binding TestCustomEntryText}"
+            <Label 
     FontSize="14"
     BackgroundColor="White"
     TextColor="Red"
@@ -63,6 +94,35 @@
     Margin="25,-7,0,0"
     HorizontalOptions="Start"
     VerticalOptions="Start" />
+        </Grid>
+
+        <Grid Padding="20">
+            <!-- Border and content -->
+            <Border Stroke="Gray"
+ StrokeThickness="1"
+ StrokeShape="RoundRectangle 8"
+ BackgroundColor="White"
+ Padding="10">
+                <controls:CustomEntry ReceivesSharedText="True"
+                                      x:Name="MyAnotherCustomEntry"
+                                        Text="{Binding TestAnotherCustomEntryText}"
+                                      TestFordevelopment ="MyAnotherCustomEntry"
+                                
+    Placeholder="Type here in another CustomEntry"
+           
+    Margin="0,0,0,0" />
+            </Border>
+
+
+            <!-- Label positioned to sit on top stroke -->
+            <Label 
+FontSize="14"
+BackgroundColor="White"
+TextColor="Red"
+Padding="4,0"
+Margin="25,-7,0,0"
+HorizontalOptions="Start"
+VerticalOptions="Start" />
         </Grid>
 
 

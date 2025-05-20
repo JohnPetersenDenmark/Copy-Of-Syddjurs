@@ -11,11 +11,11 @@ namespace Syddjurs.Models
 {
     public static class PageCustomEntryFinder
     {
-        public static Dictionary<ContentPage, List<Entry>> GetPagesWithCustomEntries()
+        public static Dictionary<ContentPage, List<CustomEntry>> GetPagesWithCustomEntries()
         {
-            // var result = new Dictionary<ContentPage, List<CustomEntry>>();
+             var result = new Dictionary<ContentPage, List<CustomEntry>>();
 
-            var result = new Dictionary<ContentPage, List<Entry>>();
+           // var result = new Dictionary<ContentPage, List<Entry>>();
 
             // Get all non-abstract ContentPage types in the current assembly
             var pageTypes = Assembly.GetExecutingAssembly()
@@ -39,7 +39,7 @@ namespace Syddjurs.Models
 
                     // Find all CustomEntry descendants in the page
                     var customEntries = pageInstance.Descendants()
-                                                   .OfType<Entry>()
+                                                   .OfType<CustomEntry>()
                                                    .ToList();
 
                     if (customEntries.Count > 0)
