@@ -75,9 +75,10 @@
      StrokeShape="RoundRectangle 8"
      BackgroundColor="White"
      Padding="10">
-                <controls:CustomEntry ReceivesSharedText="True"  x:Name="MyCustomEntry"
+                <controls:CustomEntry   x:Name="MyCustomEntry"
                                        Text="{Binding TestCustomEntryText}"
-                                      TestFordevelopment ="MyCustomEntry"
+                                      ReceiveSharedTextId ="MyCustomEntry"
+                                        UnderlineColor="Yellow"
                                     
         Placeholder="Type here in CustomEntry"
                
@@ -103,10 +104,11 @@
  StrokeShape="RoundRectangle 8"
  BackgroundColor="White"
  Padding="10">
-                <controls:CustomEntry ReceivesSharedText="True"
+                <controls:CustomEntry
                                       x:Name="MyAnotherCustomEntry"
                                         Text="{Binding TestAnotherCustomEntryText}"
-                                      TestFordevelopment ="MyAnotherCustomEntry"
+                                      ReceiveSharedTextId ="MyAnotherCustomEntry"
+                     UnderlineColor="Transparent" 
                                 
     Placeholder="Type here in another CustomEntry"
            

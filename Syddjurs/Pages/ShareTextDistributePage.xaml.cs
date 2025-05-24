@@ -78,10 +78,7 @@ public partial class ShareTextDistributePage : ContentPage, IQueryAttributable, 
     {
         base.OnAppearing();
          ShareText = _textDistribute;
-        //ItemName.Text = _textDistribute;
-
-        // MakeListOfDestinations();
-
+    
         MakeListOfDestinationPages();
 
     }
@@ -123,7 +120,7 @@ public partial class ShareTextDistributePage : ContentPage, IQueryAttributable, 
             var navParams = new Dictionary<string, Object>
                 {
                     { "ReceivedSharedText", ShareText },
-                    { "TargetEntryId", entryInfo.EntryId } // Pass target entry
+                    { "ReceiveSharedTextId", entryInfo.EntryControl.ReceiveSharedTextId } // Pass target entry
                 };
 
             await Shell.Current.GoToAsync(route, navParams);
@@ -152,10 +149,8 @@ public partial class ShareTextDistributePage : ContentPage, IQueryAttributable, 
             var pageInstance = kvp.Key;
             var entries = kvp.Value
                              .Select(e => new EntryInfo
-                             {
-                                 //EntryId = string.IsNullOrEmpty(e.EntryId) ? "(no id)" : e.EntryId,
+                             {                               
                                  EntryControl = e,
-                                 EntryId = CustomEntry.SharedTextId,
                                  EntryName = e.Placeholder
                              })
                              .ToList();
@@ -171,64 +166,8 @@ public partial class ShareTextDistributePage : ContentPage, IQueryAttributable, 
 
     }
 
-    private async Task MakeListOfDestinations()
-    {
-        //var targets = new List<(Type, string)>();
-
-        //var knownPages = new List<Type> 
-        //{ 
-        //    typeof(LoanPage),
-        //     typeof(LoginPage),
-        //    typeof(ItemPage) };
-
-
-        var pageTypes = Assembly.GetExecutingAssembly()
-                               .GetTypes()
-                               .Where(t => typeof(ContentPage).IsAssignableFrom(t) && !t.IsAbstract);
-
-        var destinationList = new List<Page>();
-
-        foreach (var type in pageTypes)
-        {
-            try
-            {
-                var page = Activator.CreateInstance(type) as Page;
-                if (page == null)
-                    continue;
-
-                var entries = FindCustomEntriesWithEntryId(page);
-                if (entries.Any())
-                {
-                    destinationList.Add(page);
-                }
-            }
-            catch
-            {
-                // Skip pages that cannot be instantiated
-            }
-        }
-    }
-
-    private static List<CustomEntry> FindCustomEntriesWithEntryId(Element root)
-    {
-        var result = new List<CustomEntry>();
-
-        foreach (var child in root.Descendants())
-        {
-            if (child is CustomEntry entry)
-            {
-                result.Add(entry);
-
-                //var entryId = entry.GetValue(CustomEntry.EntryIdProperty) as string;
-                //if (!string.IsNullOrEmpty(entryId))
-                //{
-                //    result.Add(entry);
-                //}
-            }
-        }
-
-        return result;
-    }
+   
+   
 
     public event PropertyChangedEventHandler PropertyChanged;
 

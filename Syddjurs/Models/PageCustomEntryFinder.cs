@@ -40,6 +40,7 @@ namespace Syddjurs.Models
                     // Find all CustomEntry descendants in the page
                     var customEntries = pageInstance.Descendants()
                                                    .OfType<CustomEntry>()
+                                                   .Where(customEntry => !String.IsNullOrEmpty(customEntry.ReceiveSharedTextId))
                                                    .ToList();
 
                     if (customEntries.Count > 0)

@@ -3,10 +3,6 @@ using Syddjurs.CustomControls;
 using Microsoft.Maui.Controls.Platform;
 using Microsoft.Maui.Platform;
 
-
-
-
-
 #if ANDROID
 using Android.Graphics.Drawables;
 using AndroidX.ConstraintLayout.Helper.Widget;
@@ -36,7 +32,7 @@ namespace Syddjurs.CustomHandlers
     {
         public static IPropertyMapper<CustomEntry, CustomEntryHandler> MyMapper = new PropertyMapper<CustomEntry, CustomEntryHandler>(EntryHandler.Mapper)
         {
-            //[nameof(CustomEntry.UnderlineColor)] = MapUnderlineColor,
+            [nameof(CustomEntry.UnderlineColor)] = MapUnderlineColor,
             //[nameof(CustomEntry.CustomInputType)] = MapKeyboardInputType
         };
 
@@ -81,56 +77,56 @@ namespace Syddjurs.CustomHandlers
         }
 
 
-//        private static void MapUnderlineColor(CustomEntryHandler handler, CustomEntry entry)
-//        {
-//#if ANDROID
-//            if (handler.PlatformView is AndroidX.AppCompat.Widget.AppCompatEditText appCompatEditText)
-//            {
-//                // Post to ensure changes are done on the UI thread
-//                appCompatEditText.Post(() =>
-//                {
-//                    List<Drawable> layerList = new List<Drawable>();
+        private static void MapUnderlineColor(CustomEntryHandler handler, CustomEntry entry)
+        {
+#if ANDROID
+            if (handler.PlatformView is AndroidX.AppCompat.Widget.AppCompatEditText appCompatEditText)
+            {
+                // Post to ensure changes are done on the UI thread
+                appCompatEditText.Post(() =>
+                {
+                    List<Drawable> layerList = new List<Drawable>();
 
-//                    // 1. Save the existing background
-//                    var existingBackground = appCompatEditText.Background;
+                    // 1. Save the existing background
+                    var existingBackground = appCompatEditText.Background;
 
-//                    if (existingBackground is Android.Graphics.Drawables.LayerDrawable layerDrawable)
-//                    {
-//                        for (int i = 0; i < layerDrawable.NumberOfLayers; i++)
-//                        {
-//                            var layer = layerDrawable.GetDrawable(i);
-//                            if (layer is not InsetDrawable underLineDrawable)
-//                            {
-//                                layerList.Add(layer);
-//                            }
-//                        }
-//                    }
-
-                 
-
-//                    // 2. Create a new drawable for the underline
-//                    var underlineDrawable = new UnderlineDrawable(entry.UnderlineColor.ToPlatform());
-                    
-
-//                    // 3. Set bounds for the underline drawable (width, height should match the EditText)
-//                    underlineDrawable.SetBounds(0, 0, appCompatEditText.Width, appCompatEditText.Height);
+                    if (existingBackground is Android.Graphics.Drawables.LayerDrawable layerDrawable)
+                    {
+                        for (int i = 0; i < layerDrawable.NumberOfLayers; i++)
+                        {
+                            var layer = layerDrawable.GetDrawable(i);
+                            if (layer is not InsetDrawable underLineDrawable)
+                            {
+                                layerList.Add(layer);
+                            }
+                        }
+                    }
 
 
-//                    layerList.Add(underlineDrawable);
 
-                   
-//                    var newBackGround = new Android.Graphics.Drawables.LayerDrawable(layerList.ToArray());
+                    // 2. Create a new drawable for the underline
+                    var underlineDrawable = new UnderlineDrawable(entry.UnderlineColor.ToPlatform());
 
-//                    // 5. Apply the layered drawable as the new background
-//                    appCompatEditText.SetBackground(newBackGround);
-                  
 
-//                    // Optionally, invalidate the view to ensure it gets redrawn immediately
-//                    appCompatEditText.Invalidate();
-//                });
-//            }
-//#endif
-//        }
+                    // 3. Set bounds for the underline drawable (width, height should match the EditText)
+                    underlineDrawable.SetBounds(0, 0, appCompatEditText.Width, appCompatEditText.Height);
+
+
+                    layerList.Add(underlineDrawable);
+
+
+                    var newBackGround = new Android.Graphics.Drawables.LayerDrawable(layerList.ToArray());
+
+                    // 5. Apply the layered drawable as the new background
+                    appCompatEditText.SetBackground(newBackGround);
+
+
+                    // Optionally, invalidate the view to ensure it gets redrawn immediately
+                    appCompatEditText.Invalidate();
+                });
+            }
+#endif
+        }
 
 
 
@@ -139,6 +135,11 @@ namespace Syddjurs.CustomHandlers
         protected override void ConnectHandler(AppCompatEditText nativeView)
         {
             base.ConnectHandler(nativeView);
+
+            if (VirtualView is CustomEntry customEntry)
+            {
+                var hashCode = customEntry.GetHashCode();   
+            }
 
             if (nativeView is AppCompatEditText editText)
             {
@@ -218,6 +219,7 @@ namespace Syddjurs.CustomHandlers
             nativeView.LongClick -= NativeView_LongClick;
 
             base.DisconnectHandler(nativeView);
+          
         }
 
 #endif
